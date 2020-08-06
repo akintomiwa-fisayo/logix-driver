@@ -6,14 +6,14 @@ import { AppLoading } from 'expo';
 import * as firebase from 'firebase'
 
 var firebaseConfig = {
-  apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  authDomain: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  databaseURL: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  projectId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  storageBucket: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  messagingSenderId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-  measurementId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  apiKey: "AIzaSyBZruXB3WCRfV-W5dRqKKC1tWNQ6EUZrtk",
+  authDomain: "gixtic.firebaseapp.com",
+  databaseURL: "https://gixtic.firebaseio.com",
+  projectId: "gixtic",
+  storageBucket: "gixtic.appspot.com",
+  messagingSenderId: "663980683493",
+  appId: "1:663980683493:web:f96adcebdfe127ded0e40c",
+  measurementId: "G-D2RQNJ3YW9"
 };
 
 

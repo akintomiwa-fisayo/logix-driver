@@ -17,9 +17,10 @@ export const colors = {
   RED: 'red',
   SKY: '#1E81D3',
   DARK: "#070807",
+  ICONC:"#ccc",
 
   GREY: {
-    default: '#243235',
+    default: '#00b546',
     primary:"#f5f1f1",
     secondary: "#9b9b9b",
     btnPrimary:'#666666',

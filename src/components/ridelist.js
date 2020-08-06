@@ -23,10 +23,10 @@ export default class RideList extends React.Component {
             <TouchableOpacity style={styles.iconClickStyle} onPress={() => this.onPressButton(item, index)}>
                 <View style={styles.iconViewStyle}>
                     <Icon
-                        name='car-sports'
-                        type='material-community'
-                        color={colors.DARK}
-                        size={35}
+                        name='motorcycle'
+                        type='font-awesome'
+                        color={colors.ICONC}
+                        size={25}
                     />
                 </View>
                 <View style={styles.flexViewStyle}>

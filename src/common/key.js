@@ -1,1 +1,1 @@
-export const google_map_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+export const google_map_key = 'AIzaSyB1zqZJcDXKceU5IQ5118ve2nTbO9fpzXA';

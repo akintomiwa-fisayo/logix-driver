@@ -13,18 +13,14 @@ export default class Notifications extends React.Component {
                 {Status:'Your Booking with GT908753 is confirm,please wait for ride',time:'2 mins ago'},
                 {Status:'Your Booking with GT908753 is cancelled successfully',time:'10 mins ago'},
                 {Status:'Your payment Successfully submitted',time:'2 days ago'},
-                {Status:'Hey Sudipta!Your ride is completed',time:'10 Oct,2018'},
                 {Status:'Your Booking with GT908753 is confirm,please wait for ride',time:'5 Oct,2018'},
                 {Status:'Your Booking with GT908753 is confirm,please wait for ride',time:'2 mins ago'},
                 {Status:'Your Booking with GT908753 is cancelled successfully',time:'10 mins ago'},
                 {Status:'Your payment Successfully submitted',time:'2 days ago'},
-                {Status:'Hey Sudipta!Your ride is completed',time:'10 Oct,2018'},
-                {Status:'Your Booking with GT908753 is confirm,please wait for ride',time:'5 Oct,2018'},
                 {Status:'Your Booking with GT908753 is confirm,please wait for ride',time:'2 mins ago'},
                 {Status:'Your Booking with GT908753 is cancelled successfully',time:'10 mins ago'},
                 {Status:'Your payment Successfully submitted',time:'2 days ago'},
-                {Status:'Hey Sudipta!Your ride is completed',time:'10 Oct,2018'},
-                {Status:'Your Booking with GT908753 is confirm,please wait for ride',time:'5 Oct,2018'},
+               
             ],
         } 
       }

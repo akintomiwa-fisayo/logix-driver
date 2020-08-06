@@ -1,1 +1,1 @@
-export const Currency = '$';
+export const Currency = '\u20A6';

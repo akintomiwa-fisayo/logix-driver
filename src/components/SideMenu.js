@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Dimensions, StyleSheet, FlatList, Image, TouchableOpacity, AsyncStorage } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon,Button } from 'react-native-elements';
 import SideMenuHeader from './SideMenuHeader';
 
 import { NavigationActions } from 'react-navigation';
@@ -20,11 +20,13 @@ export default class SideMenu extends React.Component{
             heightIphoneX :false,
             heightIphoneXsMax :false,
             sideMenuList: [
-                {key: 1, name: languageJSON.booking_request, navigationName: 'DriverTripAccept', icon: 'home', type: 'font-awesome', child: 'firstChild'},
+                {key: 1, name: languageJSON.booking_request, navigationName: 'DriverTripAccept', icon: 'location-arrow', type: 'font-awesome', child: 'firstChild'},
                 {key: 2, name: languageJSON.profile_settings, navigationName: 'Profile', icon: 'ios-person-add', type: 'ionicon', child: 'secondChild'},
-                {key: 4, name: languageJSON.incomeText, navigationName: 'MyEarning', icon: 'md-wallet', type: 'ionicon', child: 'ninethChild'},
-                {key: 3, name: languageJSON.my_bookings, navigationName: 'RideList', icon: 'car-sports', type: 'material-community', child: 'thirdChild'},
-                {key: 9, name: languageJSON.about_us, navigationName: 'About', icon: 'info', type: 'entypo', child: 'ninethChild'},
+                {key: 4, name: languageJSON.incomeText, navigationName: 'MyEarning', icon: 'ios-wallet', type: 'ionicon', child: 'ninethChild'},
+                {key: 3, name: languageJSON.my_bookings, navigationName: 'RideList', icon: 'motorcycle', type: 'font-awesome', child: 'thirdChild'},
+                {key: 5, name: languageJSON.my_commisions, navigationName: 'RideList', icon: 'md-wallet', type: 'ionicon', child: 'thirdChild'},
+                {key: 6, name: languageJSON.my_ref, navigationName: 'RideList', icon: 'md-pulse', type: 'ionicon', child: 'thirdChild'},
+                {key: 9, name: languageJSON.about_us, navigationName: 'About', icon: 'md-chatbubbles', type: 'ionicon', child: 'ninethChild'},
                 {key: 10, name: languageJSON.sign_out, icon: 'sign-out', type: 'font-awesome', child: 'lastChild'}
             ],
             profile_image:null
@@ -88,7 +90,7 @@ export default class SideMenu extends React.Component{
                     <FlatList
                         data={this.state.sideMenuList}     
                         keyExtractor={(item,index) => index.toString()}   
-                        style={{ marginTop: 20}}   
+                        style={{ marginTop: 5}}   
                         bounces = {false}
                         renderItem={({item, index}) => 
                             <TouchableOpacity
@@ -105,8 +107,8 @@ export default class SideMenu extends React.Component{
                                     <Icon
                                         name={item.icon}
                                         type={item.type}
-                                        color={colors.WHITE}
-                                        size={16}
+                                        color={colors.ICONC}
+                                        size={25}
                                         containerStyle={styles.iconStyle}
                                     />
                                 </View>
@@ -114,17 +116,21 @@ export default class SideMenu extends React.Component{
                             </TouchableOpacity>
                     } />
                 </View>
-                <View style={{opacity: 0.6}}>
-                    <Image 
-                        source={require('../../assets/images/logo.png')} 
-                        style={{width: '100%'}}
-                    />
-                </View>
+                <View style={styles.buttonContainer}>
+                                <Button
+                                    onPress={()=>{{
+                                        this.props.navigation.navigate('RideList')
+                                      }}}
+                                    title="Manage Bikes"
+                                   // loading={loading}
+                                    titleStyle={styles.buttonTitle}
+                                    buttonStyle={styles.registerButton}
+                                />
+                            </View>
             </View>
         )
     }
 }
-
 //style for this component
 const styles = StyleSheet.create({
     myHeader:{
@@ -132,10 +138,11 @@ const styles = StyleSheet.create({
     },
     vertialLine: {
         width: 1,
-        backgroundColor: colors.GREY.btnPrimary,
+        backgroundColor: colors.WHITE,
         position: 'absolute',
         left: 22,
-        top: 24
+        top: 24,
+       
     },
     menuItemView: {
         flexDirection: 'row',
@@ -147,22 +154,22 @@ const styles = StyleSheet.create({
         paddingRight: 10,
     },
     viewIcon: {
-        width: 24,
+        width: 35,
         height: 24,
-        borderRadius: 50,
+        backgroundColor: colors.TRANSPARENT, 
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.GREY.btnPrimary,
-        left: 1
+        left: 1,
+        
     },
     menuName: {
-        color: colors.WHITE, 
-        fontWeight: 'bold',
+        color: colors.BLACK, 
+        fontWeight: 'normal',
         marginLeft: 8,
         width:"100%"
     },
     mainViewStyle:{
-        backgroundColor: colors.BLUE.dark, 
+        backgroundColor: colors.TRANSPARENT, 
         height: '100%'
     },
     compViewStyle:{
@@ -171,6 +178,14 @@ const styles = StyleSheet.create({
     },
     iconStyle:{ 
         justifyContent: 'center', 
-        alignItems: 'center' 
+        alignItems: 'center',
+        backgroundColor: colors.TRANSPARENT,
+    },
+    registerButton: {
+        backgroundColor:colors.GREY.default,
+        height: 50,
+        borderColor: colors.TRANSPARENT,
+        borderWidth: 0,
+        borderRadius:0,
     }
 })

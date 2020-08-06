@@ -137,6 +137,8 @@ export default class RideDetails extends React.Component{
                         <View style={styles.mapcontainer}>
                             <MapView style={styles.map} 
                                 provider={PROVIDER_GOOGLE}
+                                zoomEnabled={true}
+                                minZoomLevel={12}
                                 region={{
                                     latitude:(this.state.intialregion.latitude?this.state.intialregion.latitude:22), 
                                     longitude:(this.state.intialregion.longitude?this.state.intialregion.longitude:88), 
@@ -305,17 +307,17 @@ export default class RideDetails extends React.Component{
                                             size={20}
                                         />
                                     </View>
-                                    <Text style={[styles.billAmount,{fontSize:20,color:'green'}]}>{this.state.paramData &&  this.state.paramData.customer_paid ? '$'+this.state.paramData.customer_paid.toFixed(2) :'$'+ 0}</Text>
+                                    <Text style={[styles.billAmount,{fontSize:20,color:'green'}]}>{this.state.paramData &&  this.state.paramData.customer_paid ? '\u20A6'+this.state.paramData.customer_paid.toFixed(2) :'\u20A6'+ 0}</Text>
                                 </View>
                                 {this.state.infoVisible?
                                 <View style={{flexDirection:'column'}}>  
-                                    {this.state.paramData &&  this.state.paramData.cashPaymentAmount ?<Text style={styles.payDetails}>{languageJSON.CashPaymentAmount}  {this.state.paramData &&  this.state.paramData.cashPaymentAmount ? '$'+ parseFloat(this.state.paramData.cashPaymentAmount).toFixed(2) :'$'+ 0}</Text>:null}
-                                    {this.state.paramData &&  this.state.paramData.cardPaymentAmount ?<Text style={styles.payDetails}>{languageJSON.CardPaymentAmount}  {this.state.paramData &&  this.state.paramData.cardPaymentAmount ? '$'+ parseFloat(this.state.paramData.cardPaymentAmount).toFixed(2) :'$'+ 0}</Text>:null}
-                                    {this.state.paramData &&  this.state.paramData.usedWalletMoney ? <Text style={styles.payDetails}>{languageJSON.WalletPayment}       {this.state.paramData &&  this.state.paramData.usedWalletMoney ? '$'+ parseFloat(this.state.paramData.usedWalletMoney).toFixed(2) :'$'+ 0}</Text>:null}
+                                    {this.state.paramData &&  this.state.paramData.cashPaymentAmount ?<Text style={styles.payDetails}>{languageJSON.CashPaymentAmount}  {this.state.paramData &&  this.state.paramData.cashPaymentAmount ? '\u20A6'+ parseFloat(this.state.paramData.cashPaymentAmount).toFixed(2) :'\u20A6'+ 0}</Text>:null}
+                                    {this.state.paramData &&  this.state.paramData.cardPaymentAmount ?<Text style={styles.payDetails}>{languageJSON.CardPaymentAmount}  {this.state.paramData &&  this.state.paramData.cardPaymentAmount ? '\u20A6'+ parseFloat(this.state.paramData.cardPaymentAmount).toFixed(2) :'\u20A6'+ 0}</Text>:null}
+                                    {this.state.paramData &&  this.state.paramData.usedWalletMoney ? <Text style={styles.payDetails}>{languageJSON.WalletPayment}       {this.state.paramData &&  this.state.paramData.usedWalletMoney ? '\u20A6'+ parseFloat(this.state.paramData.usedWalletMoney).toFixed(2) :'\u20A6'+ 0}</Text>:null}
                                 </View>:null}
                                 <View style={styles.billItem}>
                                     <Text style={styles.billAmount}>{languageJSON.discount_amount}</Text>
-                                    <Text style={styles.billAmount}>{this.state.paramData && this.state.paramData.discount_amount ? '$'+ parseFloat(this.state.paramData.discount_amount).toFixed(2) : '$'+0}</Text>
+                                    <Text style={styles.billAmount}>{this.state.paramData && this.state.paramData.discount_amount ? '$'+ parseFloat(this.state.paramData.discount_amount).toFixed(2) : '\u20A6'+0}</Text>
                                 </View>
                             </View>
                         </View>
@@ -325,7 +327,7 @@ export default class RideDetails extends React.Component{
                             this.state.payButtonShow ?
                             <Button 
                                 title={languageJSON.go_to_booking}
-                                titleStyle={{fontFamily: 'Roboto-Bold',}}
+
                                 onPress={() => {
                                     this.trackNow(this.state.paramData);
                                 }}

@@ -21,7 +21,7 @@ const SideMenuHeader = ({headerStyle, userPhoto, userName, userEmail, onPress}) 
                 <Icon
                     name='mail-read'
                     type='octicon'
-                    color={colors.WHITE}
+                    color={colors.ICONC}
                     size={16}
                 />
                 <Text style={styles.emailStyle}>{userEmail?userEmail.toLowerCase():""}</Text>
@@ -34,7 +34,7 @@ const SideMenuHeader = ({headerStyle, userPhoto, userName, userEmail, onPress}) 
 //style for this component
 const styles = {
     viewStyle:{
-        backgroundColor:colors.BLUE.dark,
+        backgroundColor:colors.WHITE,
         justifyContent:'center',
         alignItems:'center',
         height:200,
@@ -64,14 +64,14 @@ const styles = {
         borderRadius: 50,
         overflow: 'hidden',
         borderWidth: 2,
-        borderColor: colors.WHITE,
+        borderColor: colors.GREY.default,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20
     },
     ProfileNameStyle:{
         fontWeight: 'bold', 
-        color: colors.WHITE, 
+        color: colors.BLACK, 
         fontSize: 18,
         textAlign:"center"
     },
@@ -82,7 +82,7 @@ const styles = {
         marginTop: 4
     },
     emailStyle:{
-        color: colors.WHITE, 
+        color: colors.BLACK, 
         fontSize: 13,
         marginLeft: 4,
         textAlign:"center"

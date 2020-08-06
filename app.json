@@ -1,10 +1,9 @@
 {
   "expo": {
-    "name": "GrabCab Driver",
-    "description": "Taxi Booking Driver App",
-    "slug": "GrabCabDriver",
+    "name": "GixTic",
+    "description": "Delivery App",
+    "slug": "GixTicApp",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android"
@@ -14,7 +13,7 @@
     },
     "version": "4.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/appIcon.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",
@@ -28,23 +27,24 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.exicube.grabcabdriverapp",
+      "usesAppleSignIn": true,
+      "bundleIdentifier": "com.exicube.Gixtic",
       "infoPlist": {
-            "NSLocationAlwaysUsageDescription": "This app uses the location to find the Cabs near you.",
-            "NSLocationWhenInUseUsageDescription": "This app uses the location to find the Cabs near you.",
-            "NSCameraUsageDescription": "This app uses the camera to take your profile picture.",
-            "NSPhotoLibraryUsageDescription": "This app uses Photo Library to help upload your profile picture.",
-            "UIBackgroundModes": [
-            "location",
-            "fetch"
-            ]
+        "NSLocationAlwaysUsageDescription": "This app uses the location to find the Cabs near you.",
+        "NSLocationWhenInUseUsageDescription": "This app uses the location to find the Cabs near you.",
+        "NSCameraUsageDescription": "This app uses the camera to take your profile picture.",
+        "NSPhotoLibraryUsageDescription": "This app uses Photo Library for uploading your profile picture.",
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ]
       },
       "config": {
-        "googleMapsApiKey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        "googleMapsApiKey": "AIzaSyB1zqZJcDXKceU5IQ5118ve2nTbO9fpzXA"
       }
     },
     "android": {
-      "package": "com.exicube.grabcabdriverapp",
+      "package": "com.exicube.GixTic",
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
@@ -56,9 +56,12 @@
       ],
       "config": {
         "googleMaps": {
-          "apiKey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+          "apiKey": "AIzaSyB1zqZJcDXKceU5IQ5118ve2nTbO9fpzXA"
         }
       }
-    }
+    },
+    "facebookScheme": "fb197445044996075",
+    "facebookAppId": "197445044996075",
+    "facebookDisplayName": "GixTic"
   }
 }
