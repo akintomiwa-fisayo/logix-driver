@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Image,
   Modal,
+  Linking,
   TouchableOpacity
 } from 'react-native';
 var { width } = Dimensions.get('window');
