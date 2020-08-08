@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Image,
   Modal,
+  Linking,
   TouchableOpacity
 } from 'react-native';
 var { width } = Dimensions.get('window');
@@ -189,7 +190,7 @@ export default class DriverCompleteTrip extends React.Component {
         }
       })
     }else{
-      alert("bros create a new booking this one no get reciever number")
+      alert("Reciever number not attached to this delivery")
     }
 
   }
