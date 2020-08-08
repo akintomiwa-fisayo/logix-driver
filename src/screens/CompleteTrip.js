@@ -190,7 +190,7 @@ export default class DriverCompleteTrip extends React.Component {
         }
       })
     }else{
-      alert("bros create a new booking this one no get reciever number")
+      alert("Reciever number not attached to this delivery")
     }
 
   }
