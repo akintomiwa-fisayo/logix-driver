@@ -6,14 +6,14 @@ import { AppLoading } from 'expo';
 import * as firebase from 'firebase'
 
 var firebaseConfig = {
-  apiKey: "AIzaSyCgk2I3xIWYSd5LFa-bAR7651DlB_KUe08",
-  authDomain: "logis-ef54f.firebaseapp.com",
-  databaseURL: "https://logis-ef54f.firebaseio.com",
-  projectId: "logis-ef54f",
-  storageBucket: "logis-ef54f.appspot.com",
-  messagingSenderId: "980070107115",
-  appId: "1:980070107115:web:14d5eb8f9436fab67b7bae",
-  measurementId: "G-KPM1YYDPL3"
+  apiKey: "AIzaSyBZruXB3WCRfV-W5dRqKKC1tWNQ6EUZrtk",
+  authDomain: "gixtic.firebaseapp.com",
+  databaseURL: "https://gixtic.firebaseio.com",
+  projectId: "gixtic",
+  storageBucket: "gixtic.appspot.com",
+  messagingSenderId: "663980683493",
+  appId: "1:663980683493:web:f96adcebdfe127ded0e40c",
+  measurementId: "G-D2RQNJ3YW9"
 };
 
 
