@@ -119,6 +119,8 @@ export default class DriverTripAccept extends React.Component{
                     return fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng='+latlng+'&key=' + google_map_key)
                     .then((response) => response.json())
                     .then((responseJson) => {
+          console.log("2",{location, responseJson: Object.keys(responseJson.results[0])})
+
                         if(responseJson.results[0] && responseJson.results[0].formatted_address){
                             firebase.database().ref('users/' + curuser+'/location').update({
                                 add:responseJson.results[0].formatted_address,
