@@ -56,7 +56,7 @@ export default {
     my_ref:'My Referrals',
     my_commisions:'My Commisions',
     about_us:'Support',
-    sign_out:'Log out',
+    sign_out:'Log Out',
     rider_ride_cancel_text:'Sender has cancelled the delivery',
     mobile_no_found:'Mobile Number Not found',
     otp_error:'Please enter the correct OTP',

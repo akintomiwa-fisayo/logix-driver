@@ -198,7 +198,7 @@ export default class DiverReg extends React.Component {
             <Background>
                 <Header 
                     backgroundColor={colors.TRANSPARENT}
-                    leftComponent={{icon:'ios-arrow-back', type:'ionicon', color:colors.WHITE, size: 35, component: TouchableWithoutFeedback,onPress: onPressBack }}
+                    leftComponent={{icon:'ios-arrow-back', type:'ionicon', color:colors.BLACK, size: 35, component: TouchableWithoutFeedback,onPress: onPressBack }}
                     containerStyle={styles.headerContainerStyle}
                     innerContainerStyles={styles.headerInnerContainer}
                 />
@@ -214,7 +214,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='user'
                                     type='font-awesome'
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={30}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -224,7 +224,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'next'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.first_name}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.fname}
                                     keyboardType={'email-address'}
                                     inputStyle={styles.inputTextStyle}
@@ -243,7 +243,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='user'
                                     type='font-awesome'
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={30}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -253,7 +253,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'next'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.last_name}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.lname}
                                     keyboardType={'email-address'}
                                     inputStyle={styles.inputTextStyle}
@@ -272,7 +272,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='envelope-o'
                                     type='font-awesome'
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={23}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -282,7 +282,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'next'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.email}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.email}
                                     keyboardType={'email-address'}
                                     inputStyle={styles.inputTextStyle}
@@ -300,7 +300,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='mobile-phone'
                                     type='font-awesome'
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={40}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -310,7 +310,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'done'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.mobile}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.mobile}
                                     keyboardType={'numeric'}
                                     inputStyle={styles.inputTextStyle}
@@ -329,7 +329,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='lock'
                                     type='font-awesome'
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={30}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -339,7 +339,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'next'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.password}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.password}
                                     inputStyle={styles.inputTextStyle}
                                     onChangeText={(text)=>{this.setState({password: text})}}
@@ -357,7 +357,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='lock'
                                     type='font-awesome'
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={30}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -367,7 +367,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'next'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.confrim_password}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.confPassword}
                                     inputStyle={styles.inputTextStyle}
                                     onChangeText={(text)=>{this.setState({confPassword: text})}}
@@ -385,7 +385,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='ios-car'
                                     type={'ionicon'}
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={25}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -395,7 +395,7 @@ export default class DiverReg extends React.Component {
                                     returnKeyType={'next'}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.vehicle_model_name}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.vehicleName}
                                     inputStyle={styles.inputTextStyle}
                                     onChangeText={(text)=>{this.setState({vehicleName: text})}}
@@ -412,7 +412,7 @@ export default class DiverReg extends React.Component {
                                 <Icon
                                     name='numeric'
                                     type={'material-community'}
-                                    color={colors.WHITE}
+                                    color={colors.BLACK}
                                     size={20}
                                     containerStyle={styles.iconContainer}
                                 />
@@ -421,7 +421,7 @@ export default class DiverReg extends React.Component {
                                     editable={true}
                                     underlineColorAndroid={colors.TRANSPARENT}
                                     placeholder={languageJSON.vehicle_reg_no}
-                                    placeholderTextColor={colors.WHITE}
+                                    placeholderTextColor={colors.BLACK}
                                     value={this.state.vehicleNum}
                                     inputStyle={styles.inputTextStyle}
                                     onChangeText={(text)=>{this.setState({vehicleNum: text})}}
@@ -503,7 +503,7 @@ const styles={
     },
     inputContainerStyle: {
         borderBottomWidth:1,
-        borderBottomColor: colors.WHITE
+        borderBottomColor: colors.BLACK
     },
     textInputStyle:{
         marginLeft:10,
@@ -533,7 +533,7 @@ const styles={
         fontSize:16 
     },
     inputTextStyle: {
-        color:colors.WHITE,
+        color:colors.BLACK,
         fontSize:13,
         marginLeft:0,
         height:32
@@ -569,7 +569,7 @@ const styles={
     },
     headerStyle:{
         fontSize:18,
-        color:colors.WHITE,
+        color:colors.BLACK,
         textAlign:'center',
         flexDirection:'row',
         marginTop:0
@@ -580,7 +580,7 @@ const styles={
         flexDirection:'column',
         justifyContent:'center',
         borderRadius:10,
-        backgroundColor:colors.WHITE,
+        backgroundColor:colors.BLACK,
         marginLeft:20,
         marginRight:20,
         paddingTop:15,
@@ -624,7 +624,7 @@ const styles={
         alignSelf:'flex-end'
     },
     capturePicClick: {
-        backgroundColor:colors.WHITE, 
+        backgroundColor:colors.BLACK, 
         flexDirection: 'row',
         position:'relative',
         zIndex:1

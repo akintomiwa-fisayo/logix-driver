@@ -52,7 +52,7 @@ export class AuthLoadingScreen extends React.Component {
     alert(notification.data.msg);
     const soundObject = new Audio.Sound();
     try {
-      await soundObject.loadAsync(require('../../assets/sounds/car_horn.wav'));
+      await soundObject.loadAsync(require('../../assets/sounds/loud_ringtone.mp3'));
       await soundObject.playAsync();
     } catch (error) {
       console.log("Unable to play sound");

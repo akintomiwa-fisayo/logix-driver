@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Dimensions, StyleSheet, FlatList, Image, TouchableOpacity, AsyncStorage } from 'react-native';
+import { Text, View, Dimensions, StyleSheet, FlatList, Image,Linking, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Icon,Button } from 'react-native-elements';
 import SideMenuHeader from './SideMenuHeader';
 
@@ -13,7 +13,7 @@ var { height, width } = Dimensions.get('window');
 export default class SideMenu extends React.Component{
     constructor(props){
         super(props);
-        
+     
         this.state = {
             heightIphoneSix : false,
             heightIphoneFive: false,
@@ -26,7 +26,7 @@ export default class SideMenu extends React.Component{
                 {key: 3, name: languageJSON.my_bookings, navigationName: 'RideList', icon: 'motorcycle', type: 'font-awesome', child: 'thirdChild'},
                 {key: 5, name: languageJSON.my_commisions, navigationName: 'RideList', icon: 'md-wallet', type: 'ionicon', child: 'thirdChild'},
                 {key: 6, name: languageJSON.my_ref, navigationName: 'RideList', icon: 'md-pulse', type: 'ionicon', child: 'thirdChild'},
-                {key: 9, name: languageJSON.about_us, navigationName: 'About', icon: 'md-chatbubbles', type: 'ionicon', child: 'ninethChild'},
+                //{key: 9, name: languageJSON.about_us, navigationName: Linking.canOpenURL('https://api.whatsapp.com/send?phone=2348022231913&amp;text=Hello%20Linkinda%21'), icon: 'md-chatbubbles', type: 'ionicon', child: 'ninethChild'},
                 {key: 10, name: languageJSON.sign_out, icon: 'sign-out', type: 'font-awesome', child: 'lastChild'}
             ],
             profile_image:null
@@ -100,7 +100,7 @@ export default class SideMenu extends React.Component{
                                 }
                             style={
                                 [styles.menuItemView, 
-                                {marginTop:  (index == this.state.sideMenuList.length - 1)  ? width/7 : 0}
+                                {marginTop:  (index == this.state.sideMenuList.length - 1)  ? width/45 : 0}
                                 ]
                             }>
                                 <View style={styles.viewIcon}>
@@ -114,7 +114,25 @@ export default class SideMenu extends React.Component{
                                 </View>
                                 <Text style={styles.menuName}>{item.name}</Text>
                             </TouchableOpacity>
+                            
                     } />
+                </View>
+                <View >
+               
+                                   
+                <TouchableOpacity
+            style={styles.floatButtonStyle}
+            onPress={() => Linking.openURL('https://api.whatsapp.com/send?phone=2348022231913&amp;text=Hello%20Gixtic%21')}
+          >
+            <Icon
+              name="logo-whatsapp"
+              type="ionicon"
+              // icon: 'chat', color: '#fff',
+              size={30}
+              color={colors.ICONC}
+            />
+             <Text style={styles.supportName}>Support</Text>
+          </TouchableOpacity>
                 </View>
                 <View style={styles.buttonContainer}>
                                 <Button
@@ -153,6 +171,32 @@ const styles = StyleSheet.create({
         paddingLeft: 10, 
         paddingRight: 10,
     },
+    floatButtonStyle: {
+        borderWidth: 1,
+        borderColor: colors.GREY.default,
+        alignItems: "center",
+        justifyContent: "center",
+        width: 60,
+        position: "absolute",
+        bottom: 10,
+        left: 10,
+        height: 60,
+        backgroundColor: colors.GREY.default,
+        borderRadius: 30
+      },
+      CallfloatButtonStyle: {
+        borderWidth: 1,
+        borderColor: colors.GREY.default,
+        alignItems: "center",
+        justifyContent: "center",
+        width: 60,
+        position: "absolute",
+        bottom: 80,
+        left: 10,
+        height: 60,
+        backgroundColor: colors.GREY.default,
+        borderRadius: 30
+      },
     viewIcon: {
         width: 35,
         height: 24,
@@ -167,6 +211,15 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         marginLeft: 8,
         width:"100%"
+    },
+    supportName: {
+        color: colors.BLACK, 
+        fontWeight: 'normal',
+        marginLeft: 15,
+        top: 25,
+        width:200,
+        position:"absolute",
+        left:50
     },
     mainViewStyle:{
         backgroundColor: colors.TRANSPARENT, 
