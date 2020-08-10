@@ -33,7 +33,7 @@ export default class App extends React.Component {
 //resource load at the time of app loading
   _loadResourcesAsync = async () => {
     return Promise.all([
-      Asset.loadAsync([
+      Asset.loadAsync([ 
         require('./assets/images/background.png'),
         require('./assets/images/logo.png'),
       ]),

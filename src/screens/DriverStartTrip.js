@@ -104,10 +104,10 @@ export default class DriverStartTrip extends React.Component {
 
   //start trip button press function
   onPressStartTrip(item) {
+    alert("clicked")
     console.log({ item });
     this.setState({ allData: item })
     this.setState({ mediaSelectModal: true })
-
   }
   closeModal() {
     this.setState({ mediaSelectModal: false })
@@ -168,7 +168,10 @@ export default class DriverStartTrip extends React.Component {
               userDbRef.update(riderData).then(() => {
                 this.closeModal();
                 this.props.navigation.navigate('DriverTripComplete', { allDetails: this.state.allData, starttime: new Date().getTime() })
+                // sens push notification to user
                 this.sendPushNotification(this.state.allData.customer, this.state.allData.bookingId);
+                const mobile = this.state.allData.recieverPhone;
+                fetch(`http://billionsms.com/api.aspx?username=kobomoje_s_bamgboye@yahoo.com&password=bamgboye123&message=${message}&senderid=Gixtic&recipients=${mobile}`)
               })
             })
           })
