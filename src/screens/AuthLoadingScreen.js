@@ -14,8 +14,8 @@ export class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
+    
   }
-
   // Fetch the token from storage then navigate to our appropriate place
   _bootstrapAsync =  () => {
     firebase.auth().onAuthStateChanged((user)=>{
@@ -50,11 +50,13 @@ export class AuthLoadingScreen extends React.Component {
   
  _handleNotification = async (notification) => {
     alert(notification.data.msg);
+  
     const soundObject = new Audio.Sound();
     try {
       await soundObject.loadAsync(require('../../assets/sounds/loud_ringtone.mp3'));
       await soundObject.playAsync();
     } catch (error) {
+      console.log(error);
       console.log("Unable to play sound");
     }
   };

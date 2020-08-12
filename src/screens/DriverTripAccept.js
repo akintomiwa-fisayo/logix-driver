@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Dimensions,AsyncStorage, FlatList, Modal, TouchableHighlight, StatusBar, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, StyleSheet, Dimensions,AsyncStorage,Vibration, FlatList, Modal, TouchableHighlight, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { Button, Header } from 'react-native-elements';
 import Polyline from '@mapbox/polyline';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
@@ -45,12 +45,15 @@ export default class DriverTripAccept extends React.Component{
                 {label: languageJSON.cancel_reson_4, value: 3 },
                 {label: languageJSON.cancel_reson_5, value: 4 }
             ],
+            duration: 10000,
+            pattern: [1000, 2000, 3000, 4000],
             value: 0,
             tasklist: [],
             myLocation: {},
             driverDetails: null,
             curUid: '',
             id:0
+           
         }
         this._getLocationAsync();
       }
@@ -169,8 +172,10 @@ export default class DriverTripAccept extends React.Component{
             ref.on('value',(snapshot)=>{
                 this.setState({
                     bookingDetails: snapshot.val()
+                   
                 })
             })
+            Vibration.vibrate(this.state.pattern);
     }
 
     // accept button press function

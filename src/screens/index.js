@@ -12,6 +12,7 @@ import RideDetails from './RideDetails';
 import DriverRegistrationPage from './DriverRegistration';
 import EditProfilePage from './EditProfile';
 import AboutPage from './AboutScreen';
+import CommissionsDetails from './Commissions';
 import DriverIncomePage from './DriverIncomeScreen';
 import OnlineChat from './OnlineChat'
 
@@ -23,6 +24,7 @@ export {
     ProfileScreen,
     NotificationPage,
     EmptyNotificationPage,
+    CommissionsDetails,
     RideDetails,
     DriverStartTrip,
     DriverCompleteTrip,

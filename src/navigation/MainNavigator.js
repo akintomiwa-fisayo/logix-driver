@@ -15,6 +15,7 @@ import {
     EditProfilePage,
     AboutPage,
     OnlineChat,
+    CommissionsDetails,
     DriverIncomePage
 } from '../screens';
 import SideMenu from '../components/SideMenu';
@@ -60,6 +61,12 @@ var { width, height } = Dimensions.get('window');
         },
         MyEarning: {
             screen: DriverIncomePage,
+            navigationOptions:{
+                header: null
+            }
+        },
+        MyCommissions: {
+            screen: CommissionsDetails,
             navigationOptions:{
                 header: null
             }
