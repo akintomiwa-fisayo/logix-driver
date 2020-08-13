@@ -1,4 +1,6 @@
 export default {
+    my_commissions_menu: "My Commissions",
+    no_commission: "You are yet to refer any user",
     about_us:'About Us',
     contact_details:'Contact Details',
     email:'Email :',

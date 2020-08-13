@@ -147,6 +147,10 @@ var { width, height } = Dimensions.get('window');
             name: 'Notifications',
             screen: createStackNavigator(AppStack, { initialRouteName: 'Notifications', headerMode: 'none' })
         },
+        'MyCommissions': {
+            name: 'MyCommissions',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'MyCommissions', headerMode: 'none' })
+        },
         'DriverTripAccept': {
             name: 'DriverTripAccept',
             screen: createStackNavigator(AppStack, { initialRouteName: 'DriverTripAccept',headerMode: 'none' })
