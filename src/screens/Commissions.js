@@ -11,6 +11,7 @@ import {
   Image
 } from 'react-native';
 var { width } = Dimensions.get('window');
+var { height } = Dimensions.get('window');
 import * as firebase from 'firebase';
 import languageJSON from '../common/language';
 import { Colors } from 'react-native/Libraries/NewAppScreen'; 
@@ -52,6 +53,8 @@ export default class CommissionsPage extends React.Component {
   render() {
     const {state}=this;
 
+    // return "Your In commisions page"
+
     return (
       
       <View style={styles.mainView}>
@@ -72,7 +75,7 @@ export default class CommissionsPage extends React.Component {
 
         <View>
           <ScrollView>
-          {state.referees.map((referee)=> (
+          {state.referees && state.referees.length > 0 ? state.referees.map((referee)=> (
             <View style={styles.referee} key={referee.email}>
               <View style={styles.refereeThumb}>
                 <Image
@@ -88,7 +91,7 @@ export default class CommissionsPage extends React.Component {
                 <Text style={styles.refereeInfoDate}>{getRelativeTime(referee.createdAt, false, "text")}</Text>
               </View>
             </View>
-          ))}
+          )) : <View style={{flex:1, justifyContent:"center", alignItems:"center", height: height}}><Text style={styles.addressViewTextStyle}>{languageJSON.no_commission}</Text></View>}
           </ScrollView>
         </View>
       </View>
@@ -133,6 +136,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: thumbWidth,
   },
+  addressViewTextStyle: {
+    color: colors.GREY.secondary,
+    fontSize: 15,
+    marginLeft:15, 
+    lineHeight: 24
+    ,flexWrap: "wrap",
+},
   refereeInfo: {
     flex: 1,
     padding: 0,

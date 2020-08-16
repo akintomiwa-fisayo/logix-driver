@@ -1,6 +1,10 @@
 export default {
     my_commissions_menu: "My Commissions",
+<<<<<<< HEAD
     my_bikes_menu: "My Bikes",
+=======
+    no_commission: "You are yet to refer any user",
+>>>>>>> caaa4786db3edc90c9735bf40ca83481b4da6d83
     about_us:'About Us',
     contact_details:'Contact Details',
     email:'Email :',

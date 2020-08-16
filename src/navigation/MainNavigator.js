@@ -150,6 +150,7 @@ const DrawerRoutes = {
     screen: createStackNavigator(AppStack, { initialRouteName: 'Profile', headerMode: 'none' })
   },
 
+<<<<<<< HEAD
   'Notifications': {
     name: 'Notifications',
     screen: createStackNavigator(AppStack, { initialRouteName: 'Notifications', headerMode: 'none' })
@@ -171,6 +172,39 @@ const DrawerRoutes = {
     screen: createStackNavigator(AppStack, { initialRouteName: 'MyCommissions', headerMode: 'none' })
   },
 };
+=======
+    const DrawerRoutes = {
+        'RideList': {
+            name: 'RideList',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'RideList',headerMode: 'none' })
+        },
+        'Profile': {
+            name: 'Profile',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'Profile', headerMode: 'none' })
+        },
+        
+        'Notifications': {
+            name: 'Notifications',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'Notifications', headerMode: 'none' })
+        },
+        'MyCommissions': {
+            name: 'MyCommissions',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'MyCommissions', headerMode: 'none' })
+        },
+        'DriverTripAccept': {
+            name: 'DriverTripAccept',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'DriverTripAccept',headerMode: 'none' })
+        },
+        'About': {
+            name: 'About',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'About',headerMode: 'none' })
+        },
+        'MyEarning': {
+            name: 'MyEarning',
+            screen: createStackNavigator(AppStack, { initialRouteName: 'MyEarning', headerMode: 'none' })
+        },
+    };
+>>>>>>> caaa4786db3edc90c9735bf40ca83481b4da6d83
 
 
 export const DriverRootNavigator = createDrawerNavigator(
