@@ -15,6 +15,7 @@ import AboutPage from './AboutScreen';
 import CommissionsDetails from './Commissions';
 import DriverIncomePage from './DriverIncomeScreen';
 import OnlineChat from './OnlineChat'
+import MyBikes from './MyBikes';
 
 export {
     TaskListIgnorePopup,
@@ -33,5 +34,6 @@ export {
     EditProfilePage,
     AboutPage,
     DriverIncomePage,
-    OnlineChat
+    OnlineChat,
+    MyBikes,
 };

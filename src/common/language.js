@@ -1,8 +1,12 @@
 export default {
+    my_commissions_menu: "My Commissions",
+    my_bikes_menu: "My Bikes",
     about_us:'About Us',
     contact_details:'Contact Details',
     email:'Email :',
     phone:'Phone :',
+    register_link:"Register",
+    forgot_password_link:"Forgot Password?",
     driver_account_approve_err:'Your account is not approved yet as rider.',
     account_not_exsist:'Your account does not exist as rider.',
     driver_ride_complete_status:' RIdernhas Completed your delivery. your booking id is',

@@ -42,6 +42,10 @@ export default class App extends React.Component {
         'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
         'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
         'Roboto-Light': require('./assets/fonts/Roboto-Light.ttf'),
+        'ProductSans-Bold': require('./assets/fonts/ProductSans-Bold.ttf'),
+        'ProductSans-Regular': require('./assets/fonts/ProductSans-Regular.ttf'),
+        'ProductSans-Medium': require('./assets/fonts/ProductSans-Medium.ttf'),
+        'Product-Sans-Light-300': require('./assets/fonts/Product-Sans-Light-300.ttf'),
       }),
     ]);
   };

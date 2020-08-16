@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
 import { colors } from '../common/theme';
 import {
   StyleSheet,
@@ -8,14 +8,15 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Dimensions,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
-var { width } = Dimensions.get('window');
+var { width, height } = Dimensions.get('window');
 import * as firebase from 'firebase';
 import languageJSON from '../common/language';
-import { Colors } from 'react-native/Libraries/NewAppScreen'; 
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { getRelativeTime } from '../common/functions';
-export default class CommissionsPage extends React.Component {
+export default class ManageBikes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,37 +24,37 @@ export default class CommissionsPage extends React.Component {
     }
 
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     let currentUserData = {};
     const currentUser = firebase.auth().currentUser.uid;
-    const currentUserLink=firebase.database().ref('users/'+currentUser);
+    const currentUserLink = firebase.database().ref('users/' + currentUser);
     currentUserLink.on('value', data => {
       currentUserData = data.val()
     })
-  
+
     const users = firebase.database().ref('users/');
     users.on('value', usersData => {
       const referees = [];
-      usersData.forEach((user)=>{
+      usersData.forEach((user) => {
         const userData = user.val();
-        if(userData && userData.signupViaReferral && userData.referarDetails.refferalId === currentUserData.refferalId){
+        if (userData && userData.signupViaReferral && userData.referarDetails.refferalId === currentUserData.refferalId) {
           referees.push(userData)
         }
       })
-      
-      
-      this.setState({referees});
+
+
+      this.setState({ referees });
     })
     console.log("users data", currentUserData)
-    
-  }
-  
-  render() {
-    const {state}=this;
 
+  }
+
+  render() {
+    const { state } = this;
+    const referee = {}
     return (
-      
+
       <View style={styles.mainView}>
         <Header
           backgroundColor={colors.GREY.default}
@@ -65,31 +66,46 @@ export default class CommissionsPage extends React.Component {
             component: TouchableWithoutFeedback,
             onPress: () => { this.props.navigation.toggleDrawer(); }
           }}
-          centerComponent={<Text style={styles.headerTitleStyle}>{languageJSON.my_commissions_menu}</Text>}
+          centerComponent={<Text style={styles.headerTitleStyle}>{languageJSON.my_bikes_menu}</Text>}
           containerStyle={styles.headerStyle}
           innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
         />
 
         <View>
-          <ScrollView>
-          {state.referees.map((referee)=> (
-            <View style={styles.referee} key={referee.email}>
+          <ScrollView  style={{backgroundColor: "blue", height: height, position: "relative"}}>
+            {/* {state.referees.map((referee)=> ( */}
+            <View style={styles.referee} key={referee.email} onPress={() => {
+              this.props.navigation.navigate('MyBikes')
+            }}>
               <View style={styles.refereeThumb}>
                 <Image
                   style={styles.refereeThumbImage}
                   // source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
-                  source={referee.profile_image || referee.licenseImage  ? referee.profile_image || referee.licenseImage : require('../../assets/images/profilePic.png')}
+                  source={referee.profile_image || referee.licenseImage ? referee.profile_image || referee.licenseImage : require('../../assets/images/profilePic.png')}
 
                 />
               </View>
               <View style={styles.refereeInfo}>
-                <Text style={styles.refereeInfoName}>{referee.firstName} {referee.lastName}</Text>
-                <Text style={styles.refereeInfoAccType}>{referee.usertype}</Text>
-                <Text style={styles.refereeInfoDate}>{getRelativeTime(referee.createdAt, false, "text")}</Text>
+                <Text style={styles.refereeInfoName}>firstName lastName</Text>
+              </View>
+              <View style={{ paddingLeft: 10 }}>
+                <Text style={{ width: 15, height: 15, backgroundColor: colors.GREY.default, borderWidth: 2, borderColor: colors.GREY.default, borderRadius: 9999 }}></Text>
               </View>
             </View>
-          ))}
+            {/* ))} */}
           </ScrollView>
+            <TouchableOpacity
+              style={styles.CallfloatButtonStyle}
+              onPress={() => { this.props.navigation.navigate('MyBikes') }}
+            >
+              <Icon
+                name="md-add"
+                type="ionicon"
+                // icon: 'chat', color: '#fff',
+                size={30}
+                color={colors.WHITE}
+              />
+            </TouchableOpacity>
         </View>
       </View>
 
@@ -101,9 +117,23 @@ export default class CommissionsPage extends React.Component {
 // const thumbWidth =  width * 0.15
 const thumbWidth = 60
 const styles = StyleSheet.create({
+  CallfloatButtonStyle: {
+    borderWidth: 1,
+    borderColor: colors.BLACK,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 60,
+    position: "absolute",
+    bottom: 170,
+    right: 10,
+    height: 60,
+    backgroundColor: colors.BLACK,
+    borderRadius: 30
+  },
   mainView: {
     flex: 1,
     backgroundColor: colors.WHITE,
+    color: "red",
     //marginTop: StatusBar.currentHeight,
   },
   headerStyle: {
@@ -146,8 +176,8 @@ const styles = StyleSheet.create({
   refereeInfoAccType: {
     textTransform: "capitalize"
   },
-  refereeInfoDate: { 
-    color: colors.GREY.secondary, 
-    margin: 0 
+  refereeInfoDate: {
+    color: colors.GREY.secondary,
+    margin: 0
   }
 })
