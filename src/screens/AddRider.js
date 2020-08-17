@@ -1,14 +1,22 @@
 import React from 'react';
+import { Header, Icon } from 'react-native-elements';
 import {
   StyleSheet,
   View,
   StatusBar,
+  Text,
+  ScrollView,
+  TouchableWithoutFeedback,
+  Dimensions,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 import * as firebase from 'firebase';
-import { DiverReg } from '../components';
 import languageJSON from '../common/language';
+import AddRider from '../components/AddRider';
+import { colors } from '../common/theme';
 
-export default class DriverRegistrationPage extends React.Component {
+export default class AddRiderToManage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,19 +35,33 @@ export default class DriverRegistrationPage extends React.Component {
       vehicleModel: vehicleName,
       licenseImage: image,
       usertype: 'driver',
+      manager: firebase.auth().currentUser.uid,
       approved: false,
       queue: false,
       createdAt: new Date().toISOString(),
     };
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
+    const firebaseConfig = {
+      apiKey: 'AIzaSyBZruXB3WCRfV-W5dRqKKC1tWNQ6EUZrtk',
+      authDomain: 'gixtic.firebaseapp.com',
+      databaseURL: 'https://gixtic.firebaseio.com',
+      projectId: 'gixtic',
+      storageBucket: 'gixtic.appspot.com',
+      messagingSenderId: '663980683493',
+      appId: '1:663980683493:web:f96adcebdfe127ded0e40c',
+      measurementId: 'G-D2RQNJ3YW9',
+    };
+
+    const secondApp = firebase.initializeApp(firebaseConfig, 'second');
+
+    secondApp.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
       if (newUser) {
-        firebase.auth().currentUser.updateProfile({
+        secondApp.auth().currentUser.updateProfile({
           displayName: `${regData.firstName} ${regData.lastName}`,
         }).then(() => {
-          firebase.database().ref('users/').child(firebase.auth().currentUser.uid).set(regData)
+          secondApp.database().ref('users/').child(secondApp.auth().currentUser.uid).set(regData)
             .then(() => {
-              firebase.auth().signOut();
+              secondApp.auth().signOut();
               this.props.navigation.goBack();
               alert(languageJSON.account_successful_done);
             });
@@ -89,8 +111,27 @@ export default class DriverRegistrationPage extends React.Component {
 
   render() {
     return (
-      <View style={styles.containerView}>
-        <DiverReg complexity="complex" onPressRegister={(fname, lname, mobile, email, password, vehicleNum, vehicleName, image) => this.uploadmultimedia(fname, lname, mobile, email, password, vehicleNum, vehicleName, image)} onPressBack={() => { this.props.navigation.goBack(); }} loading={this.state.loading} />
+      <View style={styles.mainView}>
+        <Header
+          backgroundColor={colors.GREY.default}
+          leftComponent={{
+            icon: 'md-menu',
+            type: 'ionicon',
+            color: colors.WHITE,
+            size: 30,
+            component: TouchableWithoutFeedback,
+            onPress: () => { this.props.navigation.toggleDrawer(); },
+          }}
+          centerComponent={<Text style={styles.headerTitleStyle}>{languageJSON.add_bike_menu}</Text>}
+          containerStyle={styles.headerStyle}
+          innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
+        />
+        <AddRider
+          complexity="complex"
+          onPressRegister={(fname, lname, mobile, email, password, vehicleNum, vehicleName, image) => this.uploadmultimedia(fname, lname, mobile, email, password, vehicleNum, vehicleName, image)}
+          onPressBack={() => { this.props.navigation.goBack(); }}
+          loading={this.state.loading}
+        />
       </View>
     );
   }
@@ -98,6 +139,16 @@ export default class DriverRegistrationPage extends React.Component {
 
 // Screen Styling
 const styles = StyleSheet.create({
-  containerView: { flex: 1 },
+  mainView: {
+    flex: 1,
+    backgroundColor: colors.WHITE,
+    color: 'red',
+    // marginTop: StatusBar.currentHeight,
+  },
+  headerTitleStyle: {
+    color: colors.WHITE,
+    fontFamily: 'ProductSans-Bold',
+    fontSize: 20,
+  },
   textContainer: { textAlign: 'center' },
 });

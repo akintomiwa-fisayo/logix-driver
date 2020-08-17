@@ -1,4 +1,5 @@
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { Dimensions } from 'react-native';
 import {
   EmptyNotificationPage,
   DriverTripCompleteSreen,
@@ -17,78 +18,79 @@ import {
   OnlineChat,
   CommissionsDetails,
   MyBikes,
-  DriverIncomePage
+  DriverIncomePage,
+  AddRider,
 } from '../screens';
 import SideMenu from '../components/SideMenu';
-import { Dimensions } from 'react-native';
-var { width, height } = Dimensions.get('window');
 
-//app stack for user end
+const { width, height } = Dimensions.get('window');
+
+// app stack for user end
 export const AppStack = {
   DriverFare: {
     screen: DriverTripCompleteSreen,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   TaskListIgnorePopUp: {
-    screen: TaskListIgnorePopup
+    screen: TaskListIgnorePopup,
   },
   RideList: {
     screen: RideListPage,
     navigationOptions: {
       header: null,
-    }
+    },
 
   },
   Notifications: {
     screen: NotificationPage,
     navigationOptions: {
       header: null,
-    }
+    },
   },
   EmptyNotification: {
     screen: EmptyNotificationPage,
     navigationOptions: {
       header: null,
-    }
+    },
   },
 
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   MyEarning: {
     screen: DriverIncomePage,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   MyCommissions: {
     screen: CommissionsDetails,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   DriverTripAccept: {
     screen: DriverTripAccept,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   RideDetails: {
     screen: RideDetails,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   DriverTripStart: {
     screen: DriverStartTrip,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   Chat: {
     screen: OnlineChat,
@@ -99,113 +101,84 @@ export const AppStack = {
   DriverTripComplete: {
     screen: DriverCompleteTrip,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   editUser: {
     screen: EditProfilePage,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
   MyBikes: {
     screen: MyBikes,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
+  },
+  AddBike: {
+    screen: AddRider,
+    navigationOptions: {
+      header: null,
+    },
   },
   About: {
     screen: AboutPage,
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   },
-}
+};
 
-//authentication stack for user before login
+// authentication stack for user before login
 export const AuthStack = createStackNavigator({
   Login: {
     screen: LoginScreen,
     navigationOptions: {
       header: null,
-    }
+    },
   },
   DriverReg: {
     screen: DriverRegistrationPage,
     navigationOptions: {
       header: null,
-    }
+    },
   },
 }, {
   initialRouteName: 'Login',
 });
 
 const DrawerRoutes = {
-  'RideList': {
+  RideList: {
     name: 'RideList',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'RideList', headerMode: 'none' })
+    screen: createStackNavigator(AppStack, { initialRouteName: 'RideList', headerMode: 'none' }),
   },
-  'Profile': {
+  Profile: {
     name: 'Profile',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'Profile', headerMode: 'none' })
+    screen: createStackNavigator(AppStack, { initialRouteName: 'Profile', headerMode: 'none' }),
   },
 
-<<<<<<< HEAD
-  'Notifications': {
+  Notifications: {
     name: 'Notifications',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'Notifications', headerMode: 'none' })
+    screen: createStackNavigator(AppStack, { initialRouteName: 'Notifications', headerMode: 'none' }),
   },
-  'DriverTripAccept': {
-    name: 'DriverTripAccept',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'DriverTripAccept', headerMode: 'none' })
-  },
-  'About': {
-    name: 'About',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'About', headerMode: 'none' })
-  },
-  'MyEarning': {
-    name: 'MyEarning',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'MyEarning', headerMode: 'none' })
-  },
-  'MyCommissions': {
+  MyCommissions: {
     name: 'MyCommissions',
-    screen: createStackNavigator(AppStack, { initialRouteName: 'MyCommissions', headerMode: 'none' })
+    screen: createStackNavigator(AppStack, { initialRouteName: 'MyCommissions', headerMode: 'none' }),
+  },
+  DriverTripAccept: {
+    name: 'DriverTripAccept',
+    screen: createStackNavigator(AppStack, { initialRouteName: 'DriverTripAccept', headerMode: 'none' }),
+  },
+  About: {
+    name: 'About',
+    screen: createStackNavigator(AppStack, { initialRouteName: 'About', headerMode: 'none' }),
+  },
+  MyEarning: {
+    name: 'MyEarning',
+    screen: createStackNavigator(AppStack, { initialRouteName: 'MyEarning', headerMode: 'none' }),
   },
 };
-=======
-    const DrawerRoutes = {
-        'RideList': {
-            name: 'RideList',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'RideList',headerMode: 'none' })
-        },
-        'Profile': {
-            name: 'Profile',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'Profile', headerMode: 'none' })
-        },
-        
-        'Notifications': {
-            name: 'Notifications',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'Notifications', headerMode: 'none' })
-        },
-        'MyCommissions': {
-            name: 'MyCommissions',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'MyCommissions', headerMode: 'none' })
-        },
-        'DriverTripAccept': {
-            name: 'DriverTripAccept',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'DriverTripAccept',headerMode: 'none' })
-        },
-        'About': {
-            name: 'About',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'About',headerMode: 'none' })
-        },
-        'MyEarning': {
-            name: 'MyEarning',
-            screen: createStackNavigator(AppStack, { initialRouteName: 'MyEarning', headerMode: 'none' })
-        },
-    };
->>>>>>> caaa4786db3edc90c9735bf40ca83481b4da6d83
-
 
 export const DriverRootNavigator = createDrawerNavigator(
   DrawerRoutes,
@@ -213,5 +186,5 @@ export const DriverRootNavigator = createDrawerNavigator(
     drawerWidth: width / 1.9,
     initialRouteName: 'DriverTripAccept',
     contentComponent: SideMenu,
-  });
-
+  },
+);

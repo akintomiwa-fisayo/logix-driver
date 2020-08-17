@@ -65,7 +65,7 @@ export default class ManageBikes extends React.Component {
             component: TouchableWithoutFeedback,
             onPress: () => { this.props.navigation.toggleDrawer(); },
           }}
-          centerComponent={<Text style={styles.headerTitleStyle}>{languageJSON.my_bikes_menu}</Text>}
+          centerComponent={<Text style={styles.headerTitleStyle}>firstName lastName</Text>}
           containerStyle={styles.headerStyle}
           innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
         />

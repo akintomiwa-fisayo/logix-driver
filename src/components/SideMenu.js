@@ -10,35 +10,9 @@ import languageJSON from '../common/language';
 
 var { height, width } = Dimensions.get('window');
 
-<<<<<<< HEAD
 export default class SideMenu extends React.Component {
   constructor(props) {
     super(props);
-=======
-export default class SideMenu extends React.Component{
-    constructor(props){
-        super(props);
-     
-        this.state = {
-            heightIphoneSix : false,
-            heightIphoneFive: false,
-            heightIphoneX :false,
-            heightIphoneXsMax :false,
-            sideMenuList: [
-                {key: 1, name: languageJSON.booking_request, navigationName: 'DriverTripAccept', icon: 'location-arrow', type: 'font-awesome', child: 'firstChild'},
-                {key: 2, name: languageJSON.profile_settings, navigationName: 'Profile', icon: 'ios-person-add', type: 'ionicon', child: 'secondChild'},
-                {key: 4, name: languageJSON.incomeText, navigationName: 'MyEarning', icon: 'ios-wallet', type: 'ionicon', child: 'ninethChild'},
-                {key: 3, name: languageJSON.my_bookings, navigationName: 'RideList', icon: 'motorcycle', type: 'font-awesome', child: 'thirdChild'},
-                {key: 5, name: languageJSON.my_commisions, navigationName: 'MyCommissions', icon: 'md-wallet', type: 'ionicon', child: 'thirdChild'},
-                {key: 6, name: languageJSON.my_ref, navigationName: 'RideList', icon: 'md-pulse', type: 'ionicon', child: 'thirdChild'},
-                //{key: 9, name: languageJSON.about_us, navigationName: Linking.canOpenURL('https://api.whatsapp.com/send?phone=2348022231913&amp;text=Hello%20Linkinda%21'), icon: 'md-chatbubbles', type: 'ionicon', child: 'ninethChild'},
-                {key: 10, name: languageJSON.sign_out, icon: 'sign-out', type: 'font-awesome', child: 'lastChild'}
-            ],
-            profile_image:null
-        }
-        
-    }
->>>>>>> caaa4786db3edc90c9735bf40ca83481b4da6d83
 
     this.state = {
       heightIphoneSix: false,

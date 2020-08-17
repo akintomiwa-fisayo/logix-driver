@@ -1,5 +1,5 @@
 import RideListPage from './RideListScreen';
-import NotificationPage from  './NotificationScreen';
+import NotificationPage from './NotificationScreen';
 import EmptyNotificationPage from './EmptyScreen';
 import TaskListIgnorePopup from './TaskIgnorePopUp';
 import DriverTripCompleteSreen from './driverTripComplete';
@@ -14,26 +14,28 @@ import EditProfilePage from './EditProfile';
 import AboutPage from './AboutScreen';
 import CommissionsDetails from './Commissions';
 import DriverIncomePage from './DriverIncomeScreen';
-import OnlineChat from './OnlineChat'
+import OnlineChat from './OnlineChat';
 import MyBikes from './MyBikes';
+import AddRider from './AddRider';
 
 export {
-    TaskListIgnorePopup,
-    DriverTripCompleteSreen,
-    RideListPage,
-    LoginScreen,
-    ProfileScreen,
-    NotificationPage,
-    EmptyNotificationPage,
-    CommissionsDetails,
-    RideDetails,
-    DriverStartTrip,
-    DriverCompleteTrip,
-    DriverTripAccept,
-    DriverRegistrationPage,
-    EditProfilePage,
-    AboutPage,
-    DriverIncomePage,
-    OnlineChat,
-    MyBikes,
+  TaskListIgnorePopup,
+  DriverTripCompleteSreen,
+  RideListPage,
+  LoginScreen,
+  ProfileScreen,
+  NotificationPage,
+  EmptyNotificationPage,
+  CommissionsDetails,
+  RideDetails,
+  DriverStartTrip,
+  DriverCompleteTrip,
+  DriverTripAccept,
+  DriverRegistrationPage,
+  EditProfilePage,
+  AboutPage,
+  DriverIncomePage,
+  OnlineChat,
+  MyBikes,
+  AddRider,
 };

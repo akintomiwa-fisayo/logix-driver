@@ -109,7 +109,7 @@ const styles = {
   },
   containerStyle: {
     flexDirection: 'column',
-    marginTop: 10,
+    marginTop: 0,
 
   },
   form: {
@@ -138,6 +138,7 @@ const styles = {
     flexDirection: 'row',
     marginTop: 0,
     marginBottom: 20,
+    lineHeight: 30,
   },
 
   capturePhoto: {
@@ -241,7 +242,7 @@ const styles = {
   },
 };
 
-export default class DiverReg extends React.Component {
+export default class AddRider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -430,17 +431,9 @@ export default class DiverReg extends React.Component {
     console.log('we rendering', { image });
     return (
       <Background>
-        <Header
-          backgroundColor={colors.TRANSPARENT}
-          leftComponent={{
-            icon: 'ios-arrow-back', type: 'ionicon', color: colors.BLACK, size: 35, component: TouchableWithoutFeedback, onPress: onPressBack,
-          }}
-          containerStyle={styles.headerContainerStyle}
-          innerContainerStyles={styles.headerInnerContainer}
-        />
         <ScrollView style={styles.scrollViewStyle}>
           <View style={styles.logo}>
-            <Image source={require('../../assets/images/logo.png')} />
+            {/* <Image source={require('../../assets/images/logo.png')} /> */}
           </View>
           <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'padding'} style={styles.form}>
             <View style={styles.containerStyle}>

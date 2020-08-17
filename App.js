@@ -46,10 +46,6 @@ export default class App extends React.Component {
         'ProductSans-Regular': require('./assets/fonts/ProductSans-Regular.ttf'),
         'ProductSans-Medium': require('./assets/fonts/ProductSans-Medium.ttf'),
         'Product-Sans-Light-300': require('./assets/fonts/Product-Sans-Light-300.ttf'),
-<<<<<<< HEAD
-=======
-          
->>>>>>> caaa4786db3edc90c9735bf40ca83481b4da6d83
       }),
     ]);
   };
