@@ -129,7 +129,7 @@ export default class AddRiderToManage extends React.Component {
         />
         <AddRider
           complexity="complex"
-          onPressRegister={(fname, lname, mobile, email, password, vehicleNum, vehicleName, image) => this.uploadmultimedia(fname, lname, mobile, email, password, vehicleNum, vehicleName, payRate, image)}
+          onPressRegister={(fname, lname, mobile, email, password, vehicleNum, vehicleName, payRate, image) => this.uploadmultimedia(fname, lname, mobile, email, password, vehicleNum, vehicleName, payRate, image)}
           onPressBack={() => { this.props.navigation.goBack(); }}
           loading={this.state.loading}
         />
