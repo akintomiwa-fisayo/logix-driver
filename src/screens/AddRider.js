@@ -25,12 +25,13 @@ export default class AddRiderToManage extends React.Component {
   }
 
   // register button click after all validation
-  async clickRegister(fname, lname, mobile, email, password, vehicleNum, vehicleName, image) {
+  async clickRegister(fname, lname, mobile, email, password, vehicleNum, vehicleName, payRate, image) {
     const regData = {
       firstName: fname,
       lastName: lname,
       mobile,
       email,
+      payRate,
       vehicleNumber: vehicleNum,
       vehicleModel: vehicleName,
       licenseImage: image,
@@ -69,11 +70,11 @@ export default class AddRiderToManage extends React.Component {
       }
     }).catch((error) => {
       const errorMessage = error.message;
-      console.log(errorMessage);
+      console.log({ errorMessage });
     });
 
     this.setState({ loading: true }, () => {
-      this.props.navigation.navigate('Login');
+      // this.props.navigation.navigate('Login');
     });
   }
 
@@ -115,12 +116,12 @@ export default class AddRiderToManage extends React.Component {
         <Header
           backgroundColor={colors.GREY.default}
           leftComponent={{
-            icon: 'md-menu',
+            icon: 'ios-arrow-back',
             type: 'ionicon',
             color: colors.WHITE,
             size: 30,
             component: TouchableWithoutFeedback,
-            onPress: () => { this.props.navigation.toggleDrawer(); },
+            onPress: () => { this.props.navigation.goBack(); },
           }}
           centerComponent={<Text style={styles.headerTitleStyle}>{languageJSON.add_bike_menu}</Text>}
           containerStyle={styles.headerStyle}
@@ -128,7 +129,7 @@ export default class AddRiderToManage extends React.Component {
         />
         <AddRider
           complexity="complex"
-          onPressRegister={(fname, lname, mobile, email, password, vehicleNum, vehicleName, image) => this.uploadmultimedia(fname, lname, mobile, email, password, vehicleNum, vehicleName, image)}
+          onPressRegister={(fname, lname, mobile, email, password, vehicleNum, vehicleName, image) => this.uploadmultimedia(fname, lname, mobile, email, password, vehicleNum, vehicleName, payRate, image)}
           onPressBack={() => { this.props.navigation.goBack(); }}
           loading={this.state.loading}
         />

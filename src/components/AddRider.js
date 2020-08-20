@@ -253,6 +253,7 @@ export default class AddRider extends React.Component {
       password: '',
       confPassword: '',
       vehicleNum: '',
+      payRate: '',
       vehicleName: '',
       image: null,
 
@@ -263,6 +264,7 @@ export default class AddRider extends React.Component {
       passwordValid: true,
       cnfPwdValid: true,
       vehicleNumValid: true,
+      payRateValid: true,
       vehicleNameValid: true,
       imageValid: true,
       pwdErrorMsg: '',
@@ -366,6 +368,16 @@ export default class AddRider extends React.Component {
     return vehicleNumValid;
   }
 
+  // pay rate validation
+  validatePayRate() {
+    const { payRate } = this.state;
+    const payRateValid = !isNaN(payRate) && payRate > 0 && payRate < 101;
+    LayoutAnimation.easeInEaseOut();
+    this.setState({ payRateValid });
+    payRateValid || this.payRateInput.shake();
+    return payRateValid;
+  }
+
   // image upload validation
   validateImage() {
     const { image } = this.state;
@@ -417,10 +429,11 @@ export default class AddRider extends React.Component {
     const imageValid = this.validateImage();
     const vehicleNumValid = this.validateVehicleNum();
     const vehicleNameValid = this.validateVehicleName();
+    const payRateValid = this.validatePayRate();
 
-    if (fnameValid && lnameValid && mobileValid && emailValid && passwordValid && cnfPwdValid && vehicleNumValid && vehicleNameValid && imageValid) {
+    if (fnameValid && lnameValid && mobileValid && emailValid && passwordValid && cnfPwdValid && vehicleNumValid && vehicleNameValid && imageValid && payRateValid) {
       // register function of smart component
-      onPressRegister(this.state.fname, this.state.lname, this.state.mobile, this.state.email, this.state.password, this.state.vehicleNum, this.state.vehicleName, this.state.image);
+      onPressRegister(this.state.fname, this.state.lname, this.state.mobile, this.state.email, this.state.password, this.state.vehicleNum, this.state.vehicleName, this.state.payRate, this.state.image);
       // this.setState({fname:'', lname:'', mobile:'', email: '', password: '', confPassword: '', vehicleNum: '', image: null})
     }
   }
@@ -657,6 +670,32 @@ export default class AddRider extends React.Component {
                   errorMessage={this.state.vehicleNumValid ? null : languageJSON.vehicle_number_blank_err}
                   blurOnSubmit
                   onSubmitEditing={() => { this.validateVehicleNum(); }}
+                  errorStyle={styles.errorMessageStyle}
+                  inputContainerStyle={styles.inputContainerStyle}
+                  containerStyle={styles.textInputStyle}
+                />
+              </View>
+
+              <View style={styles.textInputContainerStyle}>
+                <Icon
+                  name="percent"
+                  type="material-community"
+                  color={colors.BLACK}
+                  size={20}
+                  containerStyle={styles.iconContainer}
+                />
+                <Input
+                  ref={(input) => (this.payRateInput = input)}
+                  editable
+                  underlineColorAndroid={colors.TRANSPARENT}
+                  placeholder={languageJSON.my_rider_pay_rate}
+                  placeholderTextColor={colors.BLACK}
+                  value={this.state.payRate}
+                  inputStyle={styles.inputTextStyle}
+                  onChangeText={(text) => { this.setState({ payRate: text }); }}
+                  errorMessage={this.state.payRateValid ? null : languageJSON.my_rider_pay_rate_error}
+                  blurOnSubmit
+                  onSubmitEditing={() => { this.validatePayRate(); }}
                   errorStyle={styles.errorMessageStyle}
                   inputContainerStyle={styles.inputContainerStyle}
                   containerStyle={styles.textInputStyle}

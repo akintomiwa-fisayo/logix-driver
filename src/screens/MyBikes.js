@@ -73,11 +73,12 @@ export default class ManageBikes extends React.Component {
         <View>
           <ScrollView style={{ height, position: 'relative' }}>
             {/* {state.referees.map((referee)=> ( */}
-            <View
+            <TouchableOpacity
               style={styles.referee}
               key={referee.email}
               onPress={() => {
-                this.props.navigation.navigate('MyBikes');
+                alert('clicked');
+                this.props.navigation.navigate('ViewMyBike');
               }}
             >
               <View style={styles.refereeThumb}>
@@ -102,22 +103,22 @@ export default class ManageBikes extends React.Component {
                 }}
                 />
               </View>
-            </View>
+            </TouchableOpacity>
             {/* ))} */}
           </ScrollView>
-          <TouchableOpacity
-            style={styles.CallfloatButtonStyle}
-            onPress={() => { this.props.navigation.navigate('AddBike'); }}
-          >
-            <Icon
-              name="md-add"
-              type="ionicon"
-                // icon: 'chat', color: '#fff',
-              size={30}
-              color={colors.WHITE}
-            />
-          </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          style={styles.CallfloatButtonStyle}
+          onPress={() => { this.props.navigation.navigate('AddBike'); }}
+        >
+          <Icon
+            name="md-add"
+            type="ionicon"
+                // icon: 'chat', color: '#fff',
+            size={30}
+            color={colors.WHITE}
+          />
+        </TouchableOpacity>
       </View>
 
     );
@@ -134,7 +135,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 60,
     position: 'absolute',
-    bottom: 100,
+    top: '100%',
+    marginTop: -80,
     right: 10,
     height: 60,
     backgroundColor: colors.BLACK,

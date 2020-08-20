@@ -1,4 +1,6 @@
 export default {
+  my_rider_pay_rate: 'Rider Pay Rate (in %)',
+  my_rider_pay_rate_error: 'Invalid Percentage',
   my_commissions_menu: 'My Commissions',
   my_bikes_menu: 'My Bikes',
   add_bike_menu: 'Add A Bike',
@@ -107,6 +109,7 @@ export default {
   galery: 'Gallery',
   cancel: 'Cancel',
   yes: 'Yes',
+  delete: 'Delete',
   password_change: 'You Password successfully updated',
   password_not_match: 'password does not match',
   confrim: 'Confrimation',

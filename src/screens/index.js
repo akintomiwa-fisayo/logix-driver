@@ -17,6 +17,7 @@ import DriverIncomePage from './DriverIncomeScreen';
 import OnlineChat from './OnlineChat';
 import MyBikes from './MyBikes';
 import AddRider from './AddRider';
+import ViewMyBike from './ViewMyBike';
 
 export {
   TaskListIgnorePopup,
@@ -38,4 +39,5 @@ export {
   OnlineChat,
   MyBikes,
   AddRider,
+  ViewMyBike,
 };

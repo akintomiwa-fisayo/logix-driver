@@ -1,5 +1,9 @@
 import React from 'react';
-import { Header, Icon } from 'react-native-elements';
+import {
+  Header,
+  Button,
+  Icon,
+} from 'react-native-elements';
 import {
   StyleSheet,
   View,
@@ -15,6 +19,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import languageJSON from '../common/language';
 import { colors } from '../common/theme';
 import { getRelativeTime } from '../common/functions';
+import { MapComponent } from '../components';
 
 const { width, height } = Dimensions.get('window');
 
@@ -58,12 +63,12 @@ export default class ManageBikes extends React.Component {
         <Header
           backgroundColor={colors.GREY.default}
           leftComponent={{
-            icon: 'md-menu',
+            icon: 'ios-arrow-back',
             type: 'ionicon',
             color: colors.WHITE,
             size: 30,
             component: TouchableWithoutFeedback,
-            onPress: () => { this.props.navigation.toggleDrawer(); },
+            onPress: () => { this.props.navigation.goBack(); },
           }}
           centerComponent={<Text style={styles.headerTitleStyle}>firstName lastName</Text>}
           containerStyle={styles.headerStyle}
@@ -72,51 +77,57 @@ export default class ManageBikes extends React.Component {
 
         <View>
           <ScrollView style={{ height, position: 'relative' }}>
-            {/* {state.referees.map((referee)=> ( */}
-            <View
-              style={styles.referee}
-              key={referee.email}
-              onPress={() => {
-                this.props.navigation.navigate('MyBikes');
-              }}
-            >
-              <View style={styles.refereeThumb}>
-                <Image
-                  style={styles.refereeThumbImage}
+            <TouchableOpacity style={styles.userDisplay}>
+              <Image
+                style={styles.userDisplayImage}
                   // source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
-                  source={referee.profile_image || referee.licenseImage ? referee.profile_image || referee.licenseImage : require('../../assets/images/profilePic.png')}
-
-                />
-              </View>
-              <View style={styles.refereeInfo}>
-                <Text style={styles.refereeInfoName}>firstName lastName</Text>
-              </View>
-              <View style={{ paddingLeft: 10 }}>
-                <Text style={{
-                  width: 15,
-                  height: 15,
-                  backgroundColor: colors.GREY.default,
-                  borderWidth: 2,
-                  borderColor: colors.GREY.default,
-                  borderRadius: 9999,
-                }}
-                />
-              </View>
+                source={referee.profile_image || referee.licenseImage ? referee.profile_image || referee.licenseImage : require('../../assets/images/profilePic.png')}
+              />
+            </TouchableOpacity>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
             </View>
-            {/* ))} */}
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>label : </Text>
+              <Text style={styles.infoValue}>firstName lastName</Text>
+            </View>
+
+            {/* <MapComponent
+              mapStyle={styles.map}
+              mapRegion={this.state.region}
+              markerCord={this.state.region}
+            /> */}
+
+            <View style={{ padding: 10, marginTop: 20 }}>
+              <Button
+                onPress={() => { this.onPressRegister(); }}
+                title={languageJSON.delete}
+                buttonStyle={{ backgroundColor: '#ff3b3b' }}
+              />
+            </View>
+
           </ScrollView>
-          <TouchableOpacity
-            style={styles.CallfloatButtonStyle}
-            onPress={() => { this.props.navigation.navigate('AddBike'); }}
-          >
-            <Icon
-              name="md-add"
-              type="ionicon"
-                // icon: 'chat', color: '#fff',
-              size={30}
-              color={colors.WHITE}
-            />
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -125,20 +136,12 @@ export default class ManageBikes extends React.Component {
 }
 
 // const thumbWidth =  width * 0.15
-const thumbWidth = 60;
+const thumbWidth = 120;
 const styles = StyleSheet.create({
-  CallfloatButtonStyle: {
-    borderWidth: 1,
-    borderColor: colors.BLACK,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 60,
-    position: 'absolute',
-    bottom: 100,
-    right: 10,
-    height: 60,
-    backgroundColor: colors.BLACK,
-    borderRadius: 30,
+  map: {
+    flex: 1,
+    borderRadius: 10,
+    ...StyleSheet.absoluteFillObject,
   },
   mainView: {
     flex: 1,
@@ -154,40 +157,32 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontFamily: 'ProductSans-Bold',
     fontSize: 20,
+    textTransform: 'capitalize',
   },
-  referee: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignContent: 'center',
-    flex: 1,
-    padding: 10,
-    borderBottomColor: colors.GREY.border,
-    borderBottomWidth: 1,
+  userDisplay: {
+    width: '100%',
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
+    marginBottom: 15,
   },
-  refereeThumb: {
+
+  userDisplayImage: {
     width: thumbWidth,
+    height: thumbWidth,
     borderRadius: 99999,
     overflow: 'hidden',
+    margin: 'auto',
   },
-  refereeThumbImage: {
-    width: '100%',
-    height: thumbWidth,
+
+  info: {
+    flexDirection: 'row',
+    padding: 10,
   },
-  refereeInfo: {
-    flex: 1,
-    padding: 0,
-    paddingLeft: 10,
-    justifyContent: 'center',
-  },
-  refereeInfoName: {
-    fontSize: 18,
-    textTransform: 'capitalize',
-  },
-  refereeInfoAccType: {
-    textTransform: 'capitalize',
-  },
-  refereeInfoDate: {
-    color: colors.GREY.secondary,
-    margin: 0,
+
+  infoLabel: {
+    marginRight: 10,
+    fontWeight: '700',
   },
 });

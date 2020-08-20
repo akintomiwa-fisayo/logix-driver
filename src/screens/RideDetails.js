@@ -126,7 +126,8 @@ export default class RideDetails extends React.Component{
             <View style={styles.mainView}>
                 <Header 
                     backgroundColor={colors.GREY.default}
-                    leftComponent={{icon:'ios-arrow-back', type:'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback,onPress: ()=>{this.goBack()} }}
+                    leftComponent={{icon:'ios-arrow-back', 
+                    type:'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback,onPress: ()=>{this.goBack()} }}
                     centerComponent={<Text style={styles.headerTitleStyle}>{languageJSON.booking_details}</Text>}
                     // rightComponent={{icon:'ios-notifications', type:'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback,onPress: ()=>{this.props.navigation.navigate('Notifications');} }}
                     containerStyle={styles.headerStyle}

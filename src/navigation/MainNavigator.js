@@ -20,6 +20,7 @@ import {
   MyBikes,
   DriverIncomePage,
   AddRider,
+  ViewMyBike,
 } from '../screens';
 import SideMenu from '../components/SideMenu';
 
@@ -118,6 +119,12 @@ export const AppStack = {
   },
   AddBike: {
     screen: AddRider,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ViewMyBike: {
+    screen: ViewMyBike,
     navigationOptions: {
       header: null,
     },

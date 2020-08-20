@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  View, Text, Dimensions, ScrollView, StatusBar, KeyboardAvoidingView, Image, TouchableWithoutFeedback, LayoutAnimation, Platform, TouchableOpacity,
+  View, Text, Dimensions,
+  ScrollView, StatusBar, KeyboardAvoidingView, Image, TouchableWithoutFeedback, LayoutAnimation, Platform, TouchableOpacity,
 } from 'react-native';
 import {
   Icon, Button, Header, Input,
