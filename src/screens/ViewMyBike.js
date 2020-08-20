@@ -13,6 +13,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import * as firebase from 'firebase';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -31,6 +32,29 @@ export default class ManageBikes extends React.Component {
     };
 
     console.log('the rider is : ', this.state.rider);
+    this.deleteRider = this.deleteRider.bind(this);
+  }
+
+  deleteRider() {
+    Alert.alert(
+      'Delete Rider',
+      'Are you sure you want to delete this rider',
+      [
+        {
+          text: 'Cancel',
+          // onPress: () => console.log('Cancel Pressed'),
+          // style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            firebase.database().ref(`users/${this.state.rider.id}`).remove().then(() => {
+              this.props.navigation.goBack();
+            });
+          },
+        },
+      ],
+    );
   }
 
   render() {
@@ -106,7 +130,7 @@ export default class ManageBikes extends React.Component {
 
             <View style={{ padding: 10, marginTop: 20 }}>
               <Button
-                onPress={() => { this.onPressRegister(); }}
+                onPress={() => { this.deleteRider(); }}
                 title={languageJSON.delete}
                 buttonStyle={{ backgroundColor: '#ff3b3b' }}
               />

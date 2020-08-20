@@ -36,21 +36,28 @@ export default class ManageBikes extends React.Component {
 
     const users = firebase.database().ref('users/');
     users.on('value', (usersData) => {
-      const bikes = [];
-      // const index = 0;
-      usersData.forEach((user) => {
-        // console.log({ index });
-        // if (index === 3) console.log('INITIAL FOUND A MYBIKE', user);
-        // index++;
-        // const id = user.uid;
-        const userData = user.val();
-        if (userData && userData.manager === currentUser) {
-          // console.log('FOUND A MYBIKE', { id, userData });
-          bikes.push({ ...userData });
-        }
-      });
+      const usersDataVal = usersData.val();
 
-      this.setState({ bikes });
+      if (usersDataVal) {
+        // console.log('ALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL', usersData);
+        const bikes = [];
+        // const index = 0;
+        Object.keys(usersDataVal).forEach((key) => {
+          const user = usersDataVal[key];
+          console.log('OOUR OWNNNNNNNNNNNNNNNNNNNN DETTTTTTTTTTTT', { key });
+          // console.log({ index });
+          // if (index === 3) console.log('INITIAL FOUND A MYBIKE', user);
+          // index++;
+          // const id = user.uid;
+          const userData = { ...user, id: key };
+          if (userData && userData.manager === currentUser) {
+            bikes.push(userData);
+            // console.log('FOUND A MYBIKE', { ...userData, my_bookings: undefined, 'my-booking': undefined });
+          }
+        });
+
+        this.setState({ bikes });
+      }
     });
   }
 
@@ -76,41 +83,48 @@ export default class ManageBikes extends React.Component {
 
         <View>
           <ScrollView style={{ height, position: 'relative' }}>
-            {state.bikes.map((bike) => (
-              <TouchableOpacity
-                style={styles.referee}
+            {state.bikes.length > 0
+              ? state.bikes.map((bike) => (
+                <TouchableOpacity
+                  style={styles.referee}
                 // key={referee.email}
-                onPress={() => {
-                  this.props.navigation.navigate('ViewMyBike', { rider: bike });
-                }}
-              >
-                <View style={styles.refereeThumb}>
-                  <Image
-                    style={styles.refereeThumbImage}
+                  onPress={() => {
+                    this.props.navigation.navigate('ViewMyBike', { rider: bike });
+                  }}
+                >
+                  <View style={styles.refereeThumb}>
+                    <Image
+                      style={styles.refereeThumbImage}
                   // source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
-                    source={{ uri: bike.profile_image || bike.licenseImage ? bike.profile_image || bike.licenseImage : require('../../assets/images/profilePic.png') }}
-                  />
+                      source={{ uri: bike.profile_image || bike.licenseImage ? bike.profile_image || bike.licenseImage : require('../../assets/images/profilePic.png') }}
+                    />
+                  </View>
+                  <View style={styles.refereeInfo}>
+                    <Text style={styles.refereeInfoName}>{bike.firstName} {bike.lastName}</Text>
+                  </View>
+                  <View style={{ paddingLeft: 10 }}>
+                    {bike.driverActiveStatus
+                      ? (
+                        <Text style={{
+                          width: 15,
+                          height: 15,
+                          backgroundColor: colors.GREY.default,
+                          borderWidth: 2,
+                          borderColor: colors.GREY.default,
+                          borderRadius: 9999,
+                        }}
+                        />
+                      )
+                      : ''}
+                  </View>
+                </TouchableOpacity>
+              )) : (
+                <View style={{
+                  flex: 1, justifyContent: 'center', alignItems: 'center', height,
+                }}
+                ><Text style={styles.addressViewTextStyle}>{languageJSON.no_bike}</Text>
                 </View>
-                <View style={styles.refereeInfo}>
-                  <Text style={styles.refereeInfoName}>{bike.firstName} {bike.lastName}</Text>
-                </View>
-                <View style={{ paddingLeft: 10 }}>
-                  {bike.driverActiveStatus
-                    ? (
-                      <Text style={{
-                        width: 15,
-                        height: 15,
-                        backgroundColor: colors.GREY.default,
-                        borderWidth: 2,
-                        borderColor: colors.GREY.default,
-                        borderRadius: 9999,
-                      }}
-                      />
-                    )
-                    : ''}
-                </View>
-              </TouchableOpacity>
-            ))}
+              )}
           </ScrollView>
         </View>
         <TouchableOpacity
@@ -134,6 +148,13 @@ export default class ManageBikes extends React.Component {
 // const thumbWidth =  width * 0.15
 const thumbWidth = 60;
 const styles = StyleSheet.create({
+  addressViewTextStyle: {
+    color: colors.GREY.secondary,
+    fontSize: 15,
+    marginLeft: 15,
+    lineHeight: 24,
+    flexWrap: 'wrap',
+  },
   CallfloatButtonStyle: {
     borderWidth: 1,
     borderColor: colors.BLACK,
@@ -152,7 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.WHITE,
     color: 'red',
-    // marginTop: StatusBar.currentHeight,
+  // marginTop: StatusBar.currentHeight,
   },
   headerStyle: {
     backgroundColor: colors.GREY.default,

@@ -38,7 +38,7 @@ export default class SideMenu extends React.Component {
     this.heightReponsive();
     var curuser = firebase.auth().currentUser.uid;
     const userData = firebase.database().ref('users/' + curuser);
-    userData.on('value', currentUserData => {
+    userData.on('value', (currentUserData) => {
       if (currentUserData.val()) {
         this.setState(currentUserData.val(), (res) => {
           if (currentUserData.val().driverActiveStatus == undefined) {
