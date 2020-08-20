@@ -27,7 +27,7 @@ export default class ManageBikes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      referees: [],
+      bikes: [],
     };
   }
 
@@ -41,15 +41,15 @@ export default class ManageBikes extends React.Component {
 
     const users = firebase.database().ref('users/');
     users.on('value', (usersData) => {
-      const referees = [];
+      const bikes = [];
       usersData.forEach((user) => {
         const userData = user.val();
-        if (userData && userData.signupViaReferral && userData.referarDetails.refferalId === currentUserData.refferalId) {
-          referees.push(userData);
+        if (userData && userData.manager === currentUser) {
+          bikes.push(userData);
         }
       });
 
-      this.setState({ referees });
+      this.setState({ bikes });
     });
     console.log('users data', currentUserData);
   }

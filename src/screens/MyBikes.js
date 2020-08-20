@@ -22,7 +22,7 @@ export default class ManageBikes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      referees: [],
+      bikes: [],
     };
   }
 
@@ -36,22 +36,21 @@ export default class ManageBikes extends React.Component {
 
     const users = firebase.database().ref('users/');
     users.on('value', (usersData) => {
-      const referees = [];
+      const bikes = [];
       usersData.forEach((user) => {
         const userData = user.val();
-        if (userData && userData.signupViaReferral && userData.referarDetails.refferalId === currentUserData.refferalId) {
-          referees.push(userData);
+        if (userData && userData.manager === currentUser) {
+          console.log('FOUND A MYBIKE', { userData });
+          bikes.push(userData);
         }
       });
 
-      this.setState({ referees });
+      this.setState({ bikes });
     });
-    console.log('users data', currentUserData);
   }
 
   render() {
     const { state } = this;
-    const referee = {};
     return (
 
       <View style={styles.mainView}>
@@ -72,39 +71,42 @@ export default class ManageBikes extends React.Component {
 
         <View>
           <ScrollView style={{ height, position: 'relative' }}>
-            {/* {state.referees.map((referee)=> ( */}
-            <TouchableOpacity
-              style={styles.referee}
-              key={referee.email}
-              onPress={() => {
-                alert('clicked');
-                this.props.navigation.navigate('ViewMyBike');
-              }}
-            >
-              <View style={styles.refereeThumb}>
-                <Image
-                  style={styles.refereeThumbImage}
-                  // source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
-                  source={referee.profile_image || referee.licenseImage ? referee.profile_image || referee.licenseImage : require('../../assets/images/profilePic.png')}
-
-                />
-              </View>
-              <View style={styles.refereeInfo}>
-                <Text style={styles.refereeInfoName}>firstName lastName</Text>
-              </View>
-              <View style={{ paddingLeft: 10 }}>
-                <Text style={{
-                  width: 15,
-                  height: 15,
-                  backgroundColor: colors.GREY.default,
-                  borderWidth: 2,
-                  borderColor: colors.GREY.default,
-                  borderRadius: 9999,
+            {state.bikes.map((bike) => (
+              <TouchableOpacity
+                style={styles.referee}
+                // key={referee.email}
+                onPress={() => {
+                  alert('clicked');
+                  this.props.navigation.navigate('ViewMyBike');
                 }}
-                />
-              </View>
-            </TouchableOpacity>
-            {/* ))} */}
+              >
+                <View style={styles.refereeThumb}>
+                  <Image
+                    style={styles.refereeThumbImage}
+                  // source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
+                    source={{ uri: bike.profile_image || bike.licenseImage ? bike.profile_image || bike.licenseImage : require('../../assets/images/profilePic.png') }}
+                  />
+                </View>
+                <View style={styles.refereeInfo}>
+                  <Text style={styles.refereeInfoName}>{bike.firstName} {bike.lastName}</Text>
+                </View>
+                <View style={{ paddingLeft: 10 }}>
+                  {bike.driverActiveStatus
+                    ? (
+                      <Text style={{
+                        width: 15,
+                        height: 15,
+                        backgroundColor: colors.GREY.default,
+                        borderWidth: 2,
+                        borderColor: colors.GREY.default,
+                        borderRadius: 9999,
+                      }}
+                      />
+                    )
+                    : ''}
+                </View>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
         <TouchableOpacity
