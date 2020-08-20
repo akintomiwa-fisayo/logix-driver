@@ -27,38 +27,15 @@ export default class ManageBikes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bikes: [],
+      rider: this.props.navigation.getParam('rider'),
     };
-  }
 
-  componentDidMount() {
-    let currentUserData = {};
-    const currentUser = firebase.auth().currentUser.uid;
-    const currentUserLink = firebase.database().ref(`users/${currentUser}`);
-    currentUserLink.on('value', (data) => {
-      currentUserData = data.val();
-    });
-
-    const users = firebase.database().ref('users/');
-    users.on('value', (usersData) => {
-      const bikes = [];
-      usersData.forEach((user) => {
-        const userData = user.val();
-        if (userData && userData.manager === currentUser) {
-          bikes.push(userData);
-        }
-      });
-
-      this.setState({ bikes });
-    });
-    console.log('users data', currentUserData);
+    console.log('the rider is : ', this.state.rider);
   }
 
   render() {
-    const { state } = this;
-    const referee = {};
+    const { rider } = this.state;
     return (
-
       <View style={styles.mainView}>
         <Header
           backgroundColor={colors.GREY.default}
@@ -70,7 +47,7 @@ export default class ManageBikes extends React.Component {
             component: TouchableWithoutFeedback,
             onPress: () => { this.props.navigation.goBack(); },
           }}
-          centerComponent={<Text style={styles.headerTitleStyle}>firstName lastName</Text>}
+          centerComponent={<Text style={styles.headerTitleStyle}>{rider.firstName} {rider.lastName}</Text>}
           containerStyle={styles.headerStyle}
           innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
         />
@@ -81,36 +58,44 @@ export default class ManageBikes extends React.Component {
               <Image
                 style={styles.userDisplayImage}
                   // source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
-                source={referee.profile_image || referee.licenseImage ? referee.profile_image || referee.licenseImage : require('../../assets/images/profilePic.png')}
+                source={{ uri: rider.profile_image || rider.licenseImage ? rider.profile_image || rider.licenseImage : require('../../assets/images/profilePic.png') }}
               />
             </TouchableOpacity>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>First Name : </Text>
+              <Text style={styles.infoValue}>{rider.firstName}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>Last Name : </Text>
+              <Text style={styles.infoValue}>{rider.lastName}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>Email : </Text>
+              <Text style={styles.infoValue}>{rider.email}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>Mobile : </Text>
+              <Text style={styles.infoValue}>{rider.mobile}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>Vehicle Name : </Text>
+              <Text style={styles.infoValue}>{rider.vehicleModel}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>Vehicle Number : </Text>
+              <Text style={styles.infoValue}>{rider.vehicleNumber}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.infoLabel}>label : </Text>
-              <Text style={styles.infoValue}>firstName lastName</Text>
+              <Text style={styles.infoLabel}>Is Approved : </Text>
+              <Text style={styles.infoValue}>{rider.approved ? 'Yes' : 'No'}</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>Is Active : </Text>
+              <Text style={styles.infoValue}>{rider.driverActiveStatus ? 'Yes' : 'No'}</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.infoLabel}>Created : </Text>
+              <Text style={{ ...styles.infoValue, textTransform: 'capitalize' }}>{getRelativeTime(rider.createdAt)}</Text>
             </View>
 
             {/* <MapComponent

@@ -37,11 +37,16 @@ export default class ManageBikes extends React.Component {
     const users = firebase.database().ref('users/');
     users.on('value', (usersData) => {
       const bikes = [];
+      // const index = 0;
       usersData.forEach((user) => {
+        // console.log({ index });
+        // if (index === 3) console.log('INITIAL FOUND A MYBIKE', user);
+        // index++;
+        // const id = user.uid;
         const userData = user.val();
         if (userData && userData.manager === currentUser) {
-          console.log('FOUND A MYBIKE', { userData });
-          bikes.push(userData);
+          // console.log('FOUND A MYBIKE', { id, userData });
+          bikes.push({ ...userData });
         }
       });
 
@@ -76,8 +81,7 @@ export default class ManageBikes extends React.Component {
                 style={styles.referee}
                 // key={referee.email}
                 onPress={() => {
-                  alert('clicked');
-                  this.props.navigation.navigate('ViewMyBike');
+                  this.props.navigation.navigate('ViewMyBike', { rider: bike });
                 }}
               >
                 <View style={styles.refereeThumb}>
