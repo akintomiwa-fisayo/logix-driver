@@ -44,7 +44,6 @@ export default class ManageBikes extends React.Component {
         // const index = 0;
         Object.keys(usersDataVal).forEach((key) => {
           const user = usersDataVal[key];
-          console.log('OOUR OWNNNNNNNNNNNNNNNNNNNN DETTTTTTTTTTTT', { key });
           // console.log({ index });
           // if (index === 3) console.log('INITIAL FOUND A MYBIKE', user);
           // index++;

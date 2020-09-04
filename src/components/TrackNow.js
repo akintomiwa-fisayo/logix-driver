@@ -41,6 +41,7 @@ constructor(props) {
     };
     const { bId, alldata} = this.props;
     let keys = bId;
+    this.map=null;
     const dat=firebase.database().ref('bookings/'+keys);
     dat.on('value',snapshot=>{
        // console.log('data.current',snapshot.val())
@@ -165,6 +166,7 @@ async getDirections() {
             }
         })
         this.setState({coords: coords},()=>{
+            console.log("possible error", this.map)
             setTimeout(() => {
                 this.map.fitToCoordinates([{latitude: this.state.allData.pickup.lat, longitude: this.state.allData.pickup.lng}, {latitude: this.state.allData.drop.lat, longitude: this.state.allData.drop.lng}], {
                     edgePadding: { top: 40, right: 40, bottom: 40, left: 40 },

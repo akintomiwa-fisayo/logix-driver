@@ -55,6 +55,7 @@ export default class DriverTripComplete extends React.Component {
         var riderData = {
             payment_status:"WAITING",
         };
+        
         //var bookingId = item.bookingId?item.bookingId:item.bookingUid;
         let dbRef = firebase.database().ref('users/' + this.state.curUid + '/my_bookings/' + item.bookingId + '/');
         dbRef.update(data).then(()=>{
