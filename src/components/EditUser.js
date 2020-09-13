@@ -6,9 +6,11 @@ import {
   Icon, Button, Header, Input,
 } from 'react-native-elements';
 import * as firebase from 'firebase';
+import axios from 'axios';
 import Background from './Background';
 import { colors } from '../common/theme';
 import languageJSON from '../common/language';
+import { PAYSTACK_SECRET_KEY } from '../../assets/env';
 
 const { height } = Dimensions.get('window');
 export default class EditUser extends React.Component {
@@ -19,13 +21,22 @@ export default class EditUser extends React.Component {
       lname: '',
       email: '',
       mobile: '',
+      bank: '',
+      accountNumber: '',
       fnameValid: true,
       lnameValid: true,
       mobileValid: true,
       emailValid: true,
       passwordValid: true,
       cnfPwdValid: true,
+      bankValid: true,
+      accountNumberValid: true,
       pwdErrorMsg: '',
+
+      bankList: false,
+      showBankList: false,
+
+      submitting: false,
     };
   }
 
@@ -39,7 +50,29 @@ export default class EditUser extends React.Component {
         lname: userData.val().lastName,
         email: userData.val().email,
         mobile: userData.val().mobile,
+        bank: userData.val().bank,
+        accountNumber: userData.val().bank.accountNumber || '',
       });
+    });
+
+    axios({
+      url: 'https://api.paystack.co/bank',
+
+    }).then((response) => {
+      // console.log('PAYSTACK ABNKS', response.data.data);
+      this.setState({
+        bankList: response.data.data,
+      });
+    }).catch((error) => {
+      // console.log('PAYSTACK BANKS ERROR ah', error);
+    });
+    console.log('ENVIRONMNENT', process.env);
+  }
+
+  selectbank(bank) {
+    this.setState({
+      bank,
+      bankValid: true,
     });
   }
 
@@ -66,7 +99,7 @@ export default class EditUser extends React.Component {
   // mobile number validation
   validateMobile() {
     const { mobile } = this.state;
-    const mobileValid = (mobile.length == 10);
+    const mobileValid = (mobile.length == 11);
     LayoutAnimation.easeInEaseOut();
     this.setState({ mobileValid });
     mobileValid || this.mobileInput.shake();
@@ -87,23 +120,67 @@ export default class EditUser extends React.Component {
   // register button press for validation
   onPressRegister() {
     const { onPressRegister } = this.props;
+    const { bank, accountNumber } = this.state;
     LayoutAnimation.easeInEaseOut();
-    const fnameValid = this.validateFirstName();
-    const lnameValid = this.validateLastname();
-    const mobileValid = this.validateMobile();
-    const emailValid = this.validateEmail();
 
-    if (fnameValid && lnameValid && mobileValid && emailValid) {
-      // register function of smart component
-      onPressRegister(this.state.fname, this.state.lname, this.state.mobile, this.state.email);
-      this.setState({
-        fname: '', lname: '', mobile: '', email: '',
+    const validateForm = () => new Promise((resolve) => {
+      const fnameValid = this.validateFirstName();
+      const lnameValid = this.validateLastname();
+      const mobileValid = this.validateMobile();
+      const emailValid = this.validateEmail();
+
+      // valide bank and account number
+      axios({
+        url: `https://api.paystack.co/bank/resolve?account_number=${accountNumber}&bank_code=${bank.code}`,
+        headers: {
+          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+        },
+      }).then((response) => {
+        console.log('PAYSTACK VALIDATE ACCOUNT', response.data.data);
+        this.setState({
+          accountNumberValid: true,
+          bankValid: true,
+        });
+        resolve(fnameValid && lnameValid && mobileValid && emailValid);
+      }).catch((error) => {
+        const { status } = error.response;
+        console.log('PAYSTACK VALIDATE ERROR ah', error.response.status);
+        if (status === 400 || status === 422) {
+          this.setState({
+            accountNumberValid: false,
+            bankValid: false,
+          });
+        }
+        resolve(false);
       });
-    }
+    });
+
+    validateForm().then((isValid) => {
+      if (isValid) {
+        this.setState({ submitting: true });
+        // register function of smart component
+        console.log('EVERYTHIONG VALID AND STATE IS : ', this.state);
+        onPressRegister(this.state.fname, this.state.lname, this.state.mobile, this.state.email, {
+          type: bank.type,
+          code: bank.code,
+          longcode: bank.longcode,
+          currency: bank.currency,
+          name: bank.name,
+          accountNumber,
+        });
+        this.setState({
+          fname: '', lname: '', mobile: '', email: '', bank: '', accountNumber: '',
+        });
+      } else {
+        console.log('ok something  fucking');
+      }
+    });
   }
 
   render() {
     const { onPressBack } = this.props;
+    const { state } = this;
+    const { bankList, showBankList, submitting } = state;
     return (
       <View style={styles.main}>
         <Header
@@ -177,6 +254,34 @@ export default class EditUser extends React.Component {
 
               <View style={styles.textInputContainerStyle}>
                 <Icon
+                  name="mobile-envelop"
+                  type="font-awesome"
+                  color={colors.GREY.secondary}
+                  size={40}
+                  containerStyle={styles.iconContainer}
+                />
+                <Input
+                  ref={(input) => (this.emailInput = input)}
+                  editable
+                  underlineColorAndroid={colors.TRANSPARENT}
+                  placeholder={languageJSON.email}
+                  placeholderTextColor={colors.GREY.secondary}
+                  value={this.state.email}
+                  keyboardType="number-pad"
+                  inputStyle={styles.inputTextStyle}
+                  onChangeText={(text) => { this.setState({ email: text }); }}
+                  errorMessage={this.state.emailValid ? null : languageJSON.email_blank_error}
+                  secureTextEntry={false}
+                  blurOnSubmit
+                  onSubmitEditing={() => { this.validateEmail(); }}
+                  errorStyle={styles.errorMessageStyle}
+                  inputContainerStyle={styles.inputContainerStyle}
+                  containerStyle={styles.textInputStyle}
+                />
+              </View>
+
+              <View style={styles.textInputContainerStyle}>
+                <Icon
                   name="mobile-phone"
                   type="font-awesome"
                   color={colors.GREY.secondary}
@@ -202,12 +307,118 @@ export default class EditUser extends React.Component {
                   containerStyle={styles.textInputStyle}
                 />
               </View>
+
+              <View style={styles.textInputContainerStyle}>
+                <Icon
+                  name="mobile-phone"
+                  type="font-awesome"
+                  color={colors.GREY.secondary}
+                  size={40}
+                  containerStyle={styles.iconContainer}
+                />
+                <View style={{ ...styles.textInputStyle, width: '100%', position: 'relative' }}>
+                  <Input
+                    ref={(input) => (this.bankInput = input)}
+                    // editable={false}
+                    underlineColorAndroid={colors.TRANSPARENT}
+                    placeholder={languageJSON.bank}
+                    placeholderTextColor={colors.GREY.secondary}
+                    value={this.state.bank.name || ''}
+                    keyboardType="number-pad"
+                    inputStyle={styles.inputTextStyle}
+                    // onChangeText={(text) => { this.setState({ bank: text }); }}
+                    errorMessage={this.state.bankValid ? null : languageJSON.valid_bank_number}
+                    secureTextEntry={false}
+                    onFocus={() => {
+                      this.setState({
+                        showBankList: true,
+                      });
+                    }}
+                    onBlur={() => {
+                      setTimeout(() => {
+                        this.setState({
+                          showBankList: false,
+                        });
+                      }, 1000);
+                    }}
+                    // onSubmitEditing={() => { this.validateMobile(); }}
+                    errorStyle={styles.errorMessageStyle}
+                    inputContainerStyle={styles.inputContainerStyle}
+                  // containerStyle={styles.textInputStyle}
+                  />
+                  <View style={{ display: showBankList ? 'flex' : 'none' }}>
+                    <ScrollView style={{
+                      maxHeight: 200,
+                      width: '100%',
+                      backgroundColor: 'white',
+                      position: 'absolute',
+                      shadowColor: 'black',
+                      shadowOpacity: 1,
+                      shadowRadius: 2,
+                      shadowOffset: 1,
+                      borderColor: colors.GREY.secondary,
+                      borderRadius: 3,
+                      borderWidth: 1,
+                      top: '100%',
+                      left: 0,
+                      zIndex: 9999999,
+                      overflow: 'hidden',
+                      shadowOffset: { width: 10, height: 10 },
+                      shadowRadius: 10,
+                      shadowOpacity: 1,
+                    // padding: 10
+                    }}
+                    >
+                      {
+                      bankList && (bankList.map((bank) => (
+                        <Text
+                          onPress={() => {
+                            this.selectbank(bank);
+                          }}
+                          style={styles.bankItem}
+                        >{bank.name}
+                        </Text>
+                      ))) || <Text>loading...</Text>
+                    }
+                    </ScrollView>
+                  </View>
+                </View>
+              </View>
+
+              <View style={styles.textInputContainerStyle}>
+                <Icon
+                  name="mobile-phone"
+                  type="font-awesome"
+                  color={colors.GREY.secondary}
+                  size={40}
+                  containerStyle={styles.iconContainer}
+                />
+                <Input
+                  ref={(input) => (this.accountNumber = input)}
+                  editable
+                  underlineColorAndroid={colors.TRANSPARENT}
+                  placeholder={languageJSON.account_number}
+                  placeholderTextColor={colors.GREY.secondary}
+                  value={this.state.accountNumber}
+                  keyboardType="number-pad"
+                  inputStyle={styles.inputTextStyle}
+                  onChangeText={(text) => { this.setState({ accountNumber: text, accountNumberValid: true }); }}
+                  errorMessage={this.state.accountNumberValid ? null : languageJSON.valid_account_number}
+                  secureTextEntry={false}
+                  blurOnSubmit
+                  onSubmitEditing={() => { this.validateMobile(); }}
+                  errorStyle={styles.errorMessageStyle}
+                  inputContainerStyle={styles.inputContainerStyle}
+                  containerStyle={styles.textInputStyle}
+                />
+              </View>
+
               <View style={styles.buttonContainer}>
                 <Button
                   onPress={() => { this.onPressRegister(); }}
                   title={languageJSON.update_now}
                   titleStyle={styles.buttonTitle}
-                  buttonStyle={styles.registerButton}
+                  buttonStyle={{ ...styles.registerButton, opacity: submitting ? 0.4 : 1 }}
                 />
               </View>
               <View style={styles.gapView} />
@@ -221,6 +432,11 @@ export default class EditUser extends React.Component {
 
 // style for this component
 const styles = {
+  bankItem: {
+    padding: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
   main: {
     // backgroundColor: colors.BLACK,
   },
