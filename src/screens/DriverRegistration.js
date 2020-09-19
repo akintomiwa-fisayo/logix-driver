@@ -29,6 +29,14 @@ export default class DriverRegistrationPage extends React.Component {
       usertype: 'driver',
       approved: false,
       queue: false,
+      bank: {
+        type: '',
+        code: '',
+        longcode: '',
+        currency: '',
+        name: '',
+        accountNumber: '',
+      },
       createdAt: new Date().toISOString(),
     };
 
