@@ -14,7 +14,7 @@ import {
 
 import * as firebase from 'firebase';
 import Axios from 'axios';
-import { PAYSTACK_SECRET_KEY } from '../../assets/env';
+import { paystack_secret_key,paystack_public_key } from '../common/key';
 import { colors } from '../common/theme';
 import languageJSON from '../common/language';
 import { Currency } from '../common/CurrencySymbol';
@@ -193,7 +193,7 @@ export default class DriverIncomePage extends React.Component {
             Axios({
               url: `https://api.paystack.co/bank/resolve?account_number=${bank.accountNumber}&bank_code=${bank.code}`,
               headers: {
-                Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+                Authorization: `Bearer ${paystack_secret_key}`,
               },
             }).then((res) => {
             // Create transfer recipient
@@ -209,7 +209,7 @@ export default class DriverIncomePage extends React.Component {
                 // currency: 'NGN',
                 }),
                 headers: {
-                  Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+                  Authorization: `Bearer ${paystack_secret_key}`,
                   'Content-Type': 'application/json',
                 },
               }).then((resp) => {
@@ -226,7 +226,7 @@ export default class DriverIncomePage extends React.Component {
                     reason: 'Credit cashout',
                   }),
                   headers: {
-                    Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+                    Authorization: `Bearer ${paystack_secret_key}`,
                     'Content-Type': 'application/json',
                   },
                 }).then((response) => {

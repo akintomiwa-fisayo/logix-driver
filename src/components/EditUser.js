@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 import React from 'react';
 import {
   View, Text, Dimensions, ScrollView, KeyboardAvoidingView, Image, TouchableWithoutFeedback, LayoutAnimation, Platform,
@@ -10,7 +13,7 @@ import axios from 'axios';
 import Background from './Background';
 import { colors } from '../common/theme';
 import languageJSON from '../common/language';
-import { PAYSTACK_SECRET_KEY } from '../../assets/env';
+import { paystack_secret_key,paystack_public_key } from '../common/key';
 
 const { height } = Dimensions.get('window');
 export default class EditUser extends React.Component {
@@ -133,7 +136,7 @@ export default class EditUser extends React.Component {
       axios({
         url: `https://api.paystack.co/bank/resolve?account_number=${accountNumber}&bank_code=${bank.code}`,
         headers: {
-          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+          Authorization: `Bearer ${paystack_secret_key}`,
         },
       }).then((response) => {
         console.log('PAYSTACK VALIDATE ACCOUNT', response.data.data);

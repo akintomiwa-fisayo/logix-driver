@@ -10,7 +10,7 @@ import {
   Image,
 } from 'react-native';
 import * as firebase from 'firebase';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+//import { Colors } from 'react-native/Libraries/NewAppScreen';
 import languageJSON from '../common/language';
 import { colors } from '../common/theme';
 import { getRelativeTime } from '../common/functions';

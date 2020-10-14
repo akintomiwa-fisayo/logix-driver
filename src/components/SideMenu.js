@@ -122,7 +122,7 @@ export default class SideMenu extends React.Component {
 
           <TouchableOpacity
             style={styles.floatButtonStyle}
-            onPress={() => Linking.openURL('https://api.whatsapp.com/send?phone=2348022231913&amp;text=Hello%20Gixtic%21')}
+            onPress={() => Linking.openURL('https://api.whatsapp.com/send?phone=2348140662525&amp;text=Hello%20Gixtic%21')}
           >
             <Icon
               name="logo-whatsapp"

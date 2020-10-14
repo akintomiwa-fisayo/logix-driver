@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "GixTic",
+    "name": "GixTicRider",
     "description": "Delivery App",
-    "slug": "GixTicApp",
+    "slug": "GixTicRider",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -28,7 +28,7 @@
     "ios": {
       "supportsTablet": true,
       "usesAppleSignIn": true,
-      "bundleIdentifier": "com.exicube.Gixtic",
+      "bundleIdentifier": "com.bluecore.Gixtic",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "This app uses the location to find the Cabs near you.",
         "NSLocationWhenInUseUsageDescription": "This app uses the location to find the Cabs near you.",
@@ -44,7 +44,7 @@
       }
     },
     "android": {
-      "package": "com.exicube.GixTic",
+      "package": "com.bluecore.GixTic",
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
